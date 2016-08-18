@@ -49,6 +49,26 @@ table {
 	text-align: center;
 }
 
-#segments {
-  height: 200px;
+#just-a-slider {
+  /*float: left;*/
+  /*left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);*/
+
+  height: 30px;
+  width: 300px;
+  border-radius: 3px;
+}
+
+#just-a-slider .handle {
+  height: 30px;
+  line-height: 30px;
+  border-radius: 3px;
+}
+
+#just-a-slider .value {
+  padding: 0 0 0 5px;
+  font-size: 15px;
+  font-weight: bold;
 }
