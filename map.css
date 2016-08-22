@@ -130,3 +130,11 @@ table {
   stroke-opacity: 0.5;
   stroke-width: 1.25px;
 }
+
+#stateSliders, #statesvg, #nationalSliders {
+  float: left;
+}
+
+#national {
+  float: left;
+}

@@ -1,8 +1,8 @@
 function tooltipHtml(n, d){
 	return "<h4>"+n+"</h4><table>"+
-		"<tr><td>Low</td><td>"+(d.low)+"</td></tr>"+
+		"<tr><td>Men</td><td>"+(d.men)+"</td></tr>"+
 		"<tr><td>Average</td><td>"+(d.avg)+"</td></tr>"+
-		"<tr><td>High</td><td>"+(d.high)+"</td></tr>"+
+		"<tr><td>Women</td><td>"+(d.women)+"</td></tr>"+
 		"</table>";
 }
 
@@ -13,11 +13,11 @@ var sampleData ={};
 "CO", "NM", "OR", "ND", "SD", "NE", "IA", "MS", "IN", "IL", "MN",
 "WI", "MO", "AR", "OK", "KS", "LS", "VA"]
 	.forEach(function(d){
-		var low=Math.round(100*Math.random()),
+		var men=Math.round(100*Math.random()),
 			mid=Math.round(100*Math.random()),
-			high=Math.round(100*Math.random());
-		sampleData[d]={low:d3.min([low,mid,high]), high:d3.max([low,mid,high]),
-				avg:Math.round((low+mid+high)/3), color:d3.interpolate("#ffffcc", "#800026")(low/100)};
+			women=Math.round(100*Math.random());
+		sampleData[d]={men:d3.min([men,mid,women]), women:d3.max([men,mid,women]),
+				avg:Math.round((men+mid+women)/3), color:d3.interpolate("#ffffcc", "#800026")(men/100)};
 	});
 
 
@@ -25,21 +25,21 @@ uStates.draw("#statesvg", sampleData, tooltipHtml);
 
 d3.select(self.frameElement).style("height", "600px");
 
-$(function() {
-  new Dragdealer('overall-slider', {
-    animationCallback: function(x, y) {
-      $('#overall-slider .value').text(Math.round(x * 100));
-    }
-  });
-});
-
-$(function() {
-  new Dragdealer('just-a-slider', {
-    animationCallback: function(x, y) {
-      $('#just-a-slider .value').text(Math.round(x * 100));
-    }
-  });
-});
+// $(function() {
+//   new Dragdealer('overall-slider', {
+//     animationCallback: function(x, y) {
+//       $('#overall-slider .value').text(Math.round(x * 100));
+//     }
+//   });
+// });
+//
+// $(function() {
+//   new Dragdealer('just-a-slider', {
+//     animationCallback: function(x, y) {
+//       $('#just-a-slider .value').text(Math.round(x * 100));
+//     }
+//   });
+// });
 
 function allColor(h) {
   return d3.hsl(h, 0.8, 0.8);
@@ -47,25 +47,55 @@ function allColor(h) {
 
 function renderSliders1(h) {
   hue(h);
-  hue2(1.2 * h);
-  hue3(0.8 * h);
+  hue2(h + (50 - Math.abs(h - 50)) / 5);
+  hue3(h - (50 - Math.abs(h - 50)) / 5);
 }
 
 function renderSliders2(h) {
-  hue(5 / 6 * h);
+  let displacement;
+  let rng;
+
+  if (h > 60) {
+    rng = 100 - 60;
+    displacement = 100 - h;
+    // debugger
+  } else {
+    rng = 60;
+    displacement = h;
+  }
+  // debugger
+  let deltaDisp = displacement / rng * 10;
+
+  // debugger
+
+  hue(h - deltaDisp);
   hue2(h);
-  hue3(2 / 3 * h);
+  hue3(h - (2 * deltaDisp));
 }
 
 function renderSliders3(h) {
-  hue(6 / 5 * h);
-  hue2(3 / 2 * h);
+  let displacement;
+  let rng;
+
+  if (h > 40) {
+    rng = 100 - 40;
+    displacement = 100 - h;
+    // debugger
+  } else {
+    rng = 40;
+    displacement = h;
+  }
+  // debugger
+  let deltaDisp = displacement / rng * 10;
+
+  hue(h + deltaDisp);
+  hue2(h + (2 * deltaDisp));
   hue3(h);
 }
 
 
 var svg = d3.select("#svg1"),
-    margin = {right: 50, left: 50},
+    margin = {right: 15, left: 15},
     width = +svg.attr("width") - margin.left - margin.right,
     height = +svg.attr("height");
 
@@ -94,7 +124,7 @@ slider.insert("g", ".track-overlay")
     .attr("class", "ticks")
     .attr("transform", "translate(0," + 18 + ")")
   .selectAll("text")
-  .data(x.ticks(10))
+  .data(x.ticks(5))
   .enter().append("text")
     .attr("x", x)
     .attr("text-anchor", "middle")
@@ -120,7 +150,7 @@ function hue(h) {
 
 
 var svg2 = d3.select("#svg2"),
-    margin = {right: 50, left: 50},
+    margin = {right: 15, left: 15},
     width = +svg2.attr("width") - margin.left - margin.right,
     height = +svg2.attr("height");
 
@@ -149,7 +179,7 @@ slider2.insert("g", ".track-overlay")
     .attr("class", "ticks")
     .attr("transform", "translate(0," + 18 + ")")
   .selectAll("text")
-  .data(xb.ticks(10))
+  .data(xb.ticks(5))
   .enter().append("text")
     .attr("x", xb)
     .attr("text-anchor", "middle")
@@ -173,7 +203,7 @@ function hue2(h) {
 }
 
 var svg3 = d3.select("#svg3"),
-    margin = {right: 50, left: 50},
+    margin = {right: 15, left: 15},
     width = +svg3.attr("width") - margin.left - margin.right,
     height = +svg3.attr("height");
 
@@ -202,7 +232,7 @@ slider3.insert("g", ".track-overlay")
     .attr("class", "ticks")
     .attr("transform", "translate(0," + 18 + ")")
   .selectAll("text")
-  .data(xc.ticks(10))
+  .data(xc.ticks(5))
   .enter().append("text")
     .attr("x", xc)
     .attr("text-anchor", "middle")
