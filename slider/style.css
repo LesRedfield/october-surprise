@@ -20,6 +20,8 @@ body {
   height: 60px;
   width: 740px;
   border-radius: 3px;
+
+  padding-top: 10px;
 }
 
 #just-a-slider .handle {
@@ -29,6 +31,32 @@ body {
 }
 
 #just-a-slider .value {
+  padding: 0 0 0 5px;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+#overall-slider {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+
+  height: 60px;
+  width: 740px;
+  border-radius: 3px;
+
+  padding-top: 10px;
+}
+
+#overall-slider .handle {
+  height: 60px;
+  line-height: 60px;
+  border-radius: 3px;
+}
+
+#overall-slider .value {
   padding: 0 0 0 5px;
   font-size: 30px;
   font-weight: bold;
