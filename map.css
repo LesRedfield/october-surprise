@@ -138,3 +138,11 @@ table {
 #national {
   float: left;
 }
+
+#statesvg {
+  /*position: relative;*/
+}
+
+#forecast {
+  height: 200px;
+}

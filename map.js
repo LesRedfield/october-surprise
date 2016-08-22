@@ -11,7 +11,7 @@ var sampleData ={};
 "ME", "NH", "VT", "NY", "NJ", "PA", "DE", "MD", "WV", "KY", "OH",
 "MI", "WY", "MT", "ID", "WA", "DC", "TX", "CA", "AZ", "NV", "UT",
 "CO", "NM", "OR", "ND", "SD", "NE", "IA", "MS", "IN", "IL", "MN",
-"WI", "MO", "AR", "OK", "KS", "LS", "VA"]
+"WI", "MO", "AR", "OK", "KS", "LA", "VA"]
 	.forEach(function(d){
 		var men=Math.round(100*Math.random()),
 			mid=Math.round(100*Math.random()),
@@ -21,9 +21,11 @@ var sampleData ={};
 	});
 
 
+// var width =
+
 uStates.draw("#statesvg", sampleData, tooltipHtml);
 
-d3.select(self.frameElement).style("height", "600px");
+// d3.select(self.frameElement).style("height", "600px");
 
 // $(function() {
 //   new Dragdealer('overall-slider', {
