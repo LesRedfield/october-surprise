@@ -125,6 +125,7 @@ function renderSliders2(h) {
   // debugger
 
   sampleData.National = Math.round((h - deltaDisp) * 10) / 10;
+  updateStates();
 
   hue(h - deltaDisp);
   hue2(h);
@@ -147,6 +148,7 @@ function renderSliders3(h) {
   let deltaDisp = displacement / rng * 10;
 
   sampleData.National = Math.round((h + deltaDisp) * 10) / 10;
+  updateStates();
 
   hue(h + deltaDisp);
   hue2(h + (2 * deltaDisp));
@@ -160,7 +162,7 @@ var svg = d3.select("#svg1"),
     height = +svg.attr("height");
 
 var x = d3.scaleLinear()
-    .domain([0, 100])
+    .domain([20, 80])
     .range([0, width])
     .clamp(true);
 
@@ -195,9 +197,9 @@ var handle = slider.insert("circle", ".track-overlay")
     .attr("r", 9);
 
 slider.transition() // Gratuitous intro!
-.duration(750)
+.duration(2500)
 .tween("hue", function() {
-  var i = d3.interpolate(0, 53.7);
+  var i = d3.interpolate(34, 53.7);
   return function(t) { renderSliders1(i(t)); };
 });
 
@@ -219,7 +221,7 @@ var svg2 = d3.select("#svg2"),
     height = +svg2.attr("height");
 
 var xb = d3.scaleLinear()
-    .domain([0, 100])
+    .domain([20, 80])
     .range([0, width])
     .clamp(true);
 
@@ -254,7 +256,7 @@ var handle2 = slider2.insert("circle", ".track-overlay")
     .attr("r", 9);
 
 // slider2.transition() // Gratuitous intro!
-//     .duration(750)
+//     .duration(2500)
 //     .tween("hue2", function() {
 //       var i = d3.interpolate(0, 50);
 //       return function(t) { renderSliders2(i(t)); };
@@ -274,7 +276,7 @@ var svg3 = d3.select("#svg3"),
     height = +svg3.attr("height");
 
 var xc = d3.scaleLinear()
-    .domain([0, 100])
+    .domain([20, 80])
     .range([0, width])
     .clamp(true);
 

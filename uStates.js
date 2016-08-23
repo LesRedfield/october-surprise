@@ -162,7 +162,7 @@
           height = +svg.attr("height");
 
       var x = d3.scaleLinear()
-          .domain([0, 100])
+          .domain([20, 80])
           .range([0, width])
           .clamp(true);
 
@@ -197,9 +197,9 @@
           .attr("r", 9);
 
       slider.transition() // Gratuitous intro!
-          .duration(750)
+          .duration(250)
           .tween("hue", function() {
-            var i = d3.interpolate(0, sampleData[stateName].avg);
+            var i = d3.interpolate(20, sampleData[stateName].avg);
             return function(t) { renderSliders1(i(t)); };
           });
 
@@ -222,7 +222,7 @@
       var svg2 = d3.select("#svgSS2");
 
       var xb = d3.scaleLinear()
-          .domain([0, 100])
+          .domain([20, 80])
           .range([0, width])
           .clamp(true);
 
@@ -276,7 +276,7 @@
       var svg3 = d3.select("#svgSS3");
 
       var xc = d3.scaleLinear()
-          .domain([0, 100])
+          .domain([20, 80])
           .range([0, width])
           .clamp(true);
 
