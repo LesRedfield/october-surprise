@@ -80,8 +80,8 @@
       let stateName = d.id;
 
       d3.select("#SS1div").text(function(d) {return stateName + ": " + data[stateName].avg;});
-      d3.select("#SS2div").text(function(d) {return stateName + " Women";});
-      d3.select("#SS3div").text(function(d) {return stateName + " Men";});
+      d3.select("#SS2div").text(function(d) {return stateName + " Women: " + data[stateName].avg;});
+      d3.select("#SS3div").text(function(d) {return stateName + " Men: " + data[stateName].avg;});
 
 
       function allColor(h) {
@@ -89,7 +89,12 @@
       }
 
       function renderSliders1(h) {
-        data[stateName].avg = h;
+        // debugger
+        data[stateName].avg = Math.round(h * 10) / 10;
+        data[stateName].color = newStateColor(stateName);
+
+        updateStateColor("." + stateName, data[stateName].color);
+        updateForecast();
 
         hue(h);
         hue2(h + (50 - Math.abs(h - 50)) / 5);
@@ -113,6 +118,10 @@
 
         // debugger
 
+        data[stateName].avg = Math.round((h - deltaDisp) * 10) / 10;
+        data[stateName].color = updateStateColor(stateName);
+        updateForecast();
+
         hue(h - deltaDisp);
         hue2(h);
         hue3(h - (2 * deltaDisp));
@@ -132,6 +141,10 @@
         }
         // debugger
         let deltaDisp = displacement / rng * 10;
+
+        data[stateName].avg = Math.round((h + deltaDisp) * 10) / 10;
+        data[stateName].color = updateStateColor(stateName);
+        updateForecast();
 
         hue(h + deltaDisp);
         hue2(h + (2 * deltaDisp));
@@ -189,7 +202,15 @@
       function hue(h) {
         // debugger
         handle.attr("cx", x(h));
+
+        // svg.text(function(d) {return stateName + ": " + data[stateName].avg;});
+
         svg.style("background-color", allColor(h));
+
+        d3.select("#SS1div").selectAll("text").remove();
+        d3.select("#SS1div").text(function(d) {return stateName + ": " + data[stateName].avg;});
+
+        // reRender(d.id);
       }
 
 
@@ -242,6 +263,10 @@
         handle2.attr("cx", xb(h));
         svg2.style("background-color", allColor(h));
 
+        d3.select("#SS2div").selectAll("text").remove();
+        d3.select("#SS2div").text(function(d) {return stateName + " Women: " + data[stateName].avg;});
+
+        // reRender(d.id);
       }
 
       var svg3 = d3.select("#svgSS3");
@@ -292,11 +317,17 @@
         handle3.attr("cx", xc(h));
         svg3.style("background-color", allColor(h));
 
+        d3.select("#SS3div").selectAll("text").remove();
+        d3.select("#SS3div").text(function(d) {return stateName + " Men: " + data[stateName].avg;});
+
+        // reRender(d.id);
       }
     }
 
 		d3.select(id).selectAll(".state")
-			.data(uStatePaths).enter().append("path").attr("class","state").attr("d",function(d){ return d.d;})
+			.data(uStatePaths).enter().append("path")
+      .attr("class", function(d){ return "state " + d.id; })
+      .attr("d",function(d){ return d.d;})
 			.style("fill",function(d){ return data[d.id].color; })
 			.on("mouseover", mouseOver).on("mouseout", mouseOut)
       .on("click", clicked);
@@ -304,3 +335,159 @@
 
 	this.uStates = uStates;
 })();
+
+// function reRender(state) {
+//   // debugger
+//   d3.select("#statesvg").selectAll(".state")
+//     // .data(uStatePaths).enter().append("path").attr("class","state").attr("d",function(d){ return d.d;})
+//     .style("fill",function(state){ return sampleData[state].color; });
+//     // .on("mouseover", mouseOver).on("mouseout", mouseOut)
+//     // .on("click", clicked);
+// }
+
+function render() {
+  // transitionRender();
+  uStates.draw("#statesvg", sampleData, tooltipHtml);
+}
+
+function stateColor(state) {
+  if (data[state].overall > 54) {
+    return "blue";
+  } else if (data[state].overall > 50) {
+    return "lightblue";
+  } else if (data[state].overall > 46) {
+    return "salmon";
+  } else {
+    return "red";
+  }
+}
+
+function newStateColor(state) {
+
+
+  if (sampleData[state].avg > 54) {
+    return "blue";
+  } else if (sampleData[state].avg > 50) {
+    return "lightblue";
+  } else if (sampleData[state].avg > 46) {
+    return "salmon";
+  } else {
+    return "red";
+  }
+}
+
+function updateStateColor(state, color) {
+  // debugger
+  d3.select("#statesvg").selectAll(state)
+    // .style("fill", function(state){ return sampleData[state].color; });
+    .style("fill", color);
+}
+
+function tooltipHtml(n, d){
+	return "<h4>"+n+"</h4><table>"+
+		"<tr><td>Men</td><td>"+(d.men)+"</td></tr>"+
+		"<tr><td>Average</td><td>"+(d.avg)+"</td></tr>"+
+		"<tr><td>Women</td><td>"+(d.women)+"</td></tr>"+
+		"</table>";
+}
+
+var sampleData = {};
+["HI", "AK", "FL", "SC", "GA", "AL", "NC", "TN", "RI", "CT", "MA",
+"ME", "NH", "VT", "NY", "NJ", "PA", "DE", "MD", "WV", "KY", "OH",
+"MI", "WY", "MT", "ID", "WA", "TX", "CA", "AZ", "NV", "UT",
+"CO", "NM", "OR", "ND", "SD", "NE", "IA", "MS", "IN", "IL", "MN",
+"WI", "MO", "AR", "OK", "KS", "LA", "VA"]
+	.forEach(function(d) {
+		var men = Math.round(100*Math.random()),
+			  avg = data[d].overall,
+			  women = Math.round(100*Math.random());
+        color = stateColor(d);
+
+		sampleData[d] = {
+      men: d3.min([men,women]),
+      women: d3.max([men,women]),
+			avg: avg,
+      color: color
+    };
+	});
+
+render();
+
+function forecast() {
+  let hc = 0;
+  let dt = 0;
+
+  ["HI", "AK", "FL", "SC", "GA", "AL", "NC", "TN", "RI", "CT", "MA",
+  "ME", "NH", "VT", "NY", "NJ", "PA", "DE", "MD", "WV", "KY", "OH",
+  "MI", "WY", "MT", "ID", "WA", "TX", "CA", "AZ", "NV", "UT",
+  "CO", "NM", "OR", "ND", "SD", "NE", "IA", "MS", "IN", "IL", "MN",
+  "WI", "MO", "AR", "OK", "KS", "LA", "VA"].forEach(function(state) {
+    if (data[state].overall > 50) {
+      hc += data[state].votes;
+    } else {
+      dt += data[state].votes;
+    }
+  });
+
+  return [
+    {"name": "Clinton", "votes": hc, "x": 25, "color": "blue"},
+    {"name": "Trump", "votes": dt, "x": 500, "color": "red"}
+  ];
+}
+
+
+var forecast = forecast();
+
+var forecastContainer = d3.select("#forecast").append("svg")
+                          .attr("width", 1000)
+                          .attr("height", 200);
+
+var text = forecastContainer.selectAll("text")
+                            .data(forecast)
+                            .enter()
+                            .append("text");
+
+var textLabels = text
+                 .attr("x", function(d) { return d.x; })
+                 .attr("y", 60)
+                 .text( function (d) { return d.name + ": " + d.votes; })
+                 .attr("font-size", "50px")
+                 .attr("fill", function(d) { return d.color; });
+
+function updateForecast() {
+  forecastContainer.selectAll("text").remove();
+
+  let hc = 0;
+  let dt = 0;
+
+  ["HI", "AK", "FL", "SC", "GA", "AL", "NC", "TN", "RI", "CT", "MA",
+  "ME", "NH", "VT", "NY", "NJ", "PA", "DE", "MD", "WV", "KY", "OH",
+  "MI", "WY", "MT", "ID", "WA", "TX", "CA", "AZ", "NV", "UT",
+  "CO", "NM", "OR", "ND", "SD", "NE", "IA", "MS", "IN", "IL", "MN",
+  "WI", "MO", "AR", "OK", "KS", "LA", "VA"].forEach(function(state) {
+    // debugger
+    if (sampleData[state].avg > 50) {
+      hc += data[state].votes;
+    } else {
+      dt += data[state].votes;
+    }
+  });
+
+  let forecast = [
+    {"name": "Clinton", "votes": hc, "x": 25, "color": "blue"},
+    {"name": "Trump", "votes": dt, "x": 500, "color": "red"}
+  ];
+
+  var text = forecastContainer.selectAll("text")
+                             .data(forecast)
+                             .enter()
+                             .append("text");
+
+  var textLabels = text
+                  .attr("x", function(d) { return d.x; })
+                  .attr("y", 60)
+                  .text( function (d) { return d.name + ": " + d.votes; })
+                  .attr("font-size", "50px")
+                  .attr("fill", function(d) { return d.color; });
+
+}

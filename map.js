@@ -1,45 +1,51 @@
-function tooltipHtml(n, d){
-	return "<h4>"+n+"</h4><table>"+
-		"<tr><td>Men</td><td>"+(d.men)+"</td></tr>"+
-		"<tr><td>Average</td><td>"+(d.avg)+"</td></tr>"+
-		"<tr><td>Women</td><td>"+(d.women)+"</td></tr>"+
-		"</table>";
-}
+// function tooltipHtml(n, d){
+// 	return "<h4>"+n+"</h4><table>"+
+// 		"<tr><td>Men</td><td>"+(d.men)+"</td></tr>"+
+// 		"<tr><td>Average</td><td>"+(d.avg)+"</td></tr>"+
+// 		"<tr><td>Women</td><td>"+(d.women)+"</td></tr>"+
+// 		"</table>";
+// }
+//
+// function stateColor(state) {
+//   if (data[state].overall > 54) {
+//     return "blue";
+//   } else if (data[state].overall > 50) {
+//     return "lightblue";
+//   } else if (data[state].overall > 46) {
+//     return "salmon";
+//   } else {
+//     return "red";
+//   }
+// }
 
-function stateColor(state) {
-  if (data[state].overall > 54) {
-    return "blue";
-  } else if (data[state].overall > 50) {
-    return "lightblue";
-  } else if (data[state].overall > 46) {
-    return "salmon";
-  } else {
-    return "red";
-  }
-}
+// function render() {
+//   // transitionRender();
+//   uStates.draw("#statesvg", sampleData, tooltipHtml);
+// }
+//
+// var sampleData = {};
+// ["HI", "AK", "FL", "SC", "GA", "AL", "NC", "TN", "RI", "CT", "MA",
+// "ME", "NH", "VT", "NY", "NJ", "PA", "DE", "MD", "WV", "KY", "OH",
+// "MI", "WY", "MT", "ID", "WA", "TX", "CA", "AZ", "NV", "UT",
+// "CO", "NM", "OR", "ND", "SD", "NE", "IA", "MS", "IN", "IL", "MN",
+// "WI", "MO", "AR", "OK", "KS", "LA", "VA"]
+// 	.forEach(function(d) {
+// 		var men = Math.round(100*Math.random()),
+// 			  avg = data[d].overall,
+// 			  women = Math.round(100*Math.random());
+//         color = stateColor(d);
+//
+// 		sampleData[d] = {
+//       men: d3.min([men,women]),
+//       women: d3.max([men,women]),
+// 			avg: avg,
+//       color: color
+//     };
+// 	});
+//
+// render();
 
-var sampleData ={};
-["HI", "AK", "FL", "SC", "GA", "AL", "NC", "TN", "RI", "CT", "MA",
-"ME", "NH", "VT", "NY", "NJ", "PA", "DE", "MD", "WV", "KY", "OH",
-"MI", "WY", "MT", "ID", "WA", "TX", "CA", "AZ", "NV", "UT",
-"CO", "NM", "OR", "ND", "SD", "NE", "IA", "MS", "IN", "IL", "MN",
-"WI", "MO", "AR", "OK", "KS", "LA", "VA"]
-	.forEach(function(d){
-		var men = Math.round(100*Math.random()),
-			  avg = data[d].overall,
-			  women = Math.round(100*Math.random());
-        color = stateColor(d);
-
-		sampleData[d] = {
-      men: d3.min([men,women]),
-      women: d3.max([men,women]),
-			avg: avg,
-      color: color
-    };
-	});
-
-
-uStates.draw("#statesvg", sampleData, tooltipHtml);
+// uStates.draw("#statesvg", sampleData, tooltipHtml);
 
 // d3.select(self.frameElement).style("height", "600px");
 
@@ -153,11 +159,12 @@ var handle = slider.insert("circle", ".track-overlay")
     .attr("r", 9);
 
 slider.transition() // Gratuitous intro!
-    .duration(750)
-    .tween("hue", function() {
-      var i = d3.interpolate(0, 50);
-      return function(t) { renderSliders1(i(t)); };
-    });
+.duration(750)
+.tween("hue", function() {
+  var i = d3.interpolate(0, 50);
+  return function(t) { renderSliders1(i(t)); };
+});
+
 
 function hue(h) {
   // debugger
@@ -272,43 +279,3 @@ function hue3(h) {
   svg3.style("background-color", allColor(h));
 
 }
-
-function forecast() {
-  let hc = 0;
-  let dt = 0;
-
-  ["HI", "AK", "FL", "SC", "GA", "AL", "NC", "TN", "RI", "CT", "MA",
-  "ME", "NH", "VT", "NY", "NJ", "PA", "DE", "MD", "WV", "KY", "OH",
-  "MI", "WY", "MT", "ID", "WA", "TX", "CA", "AZ", "NV", "UT",
-  "CO", "NM", "OR", "ND", "SD", "NE", "IA", "MS", "IN", "IL", "MN",
-  "WI", "MO", "AR", "OK", "KS", "LA", "VA"].forEach(function(state) {
-    if (data[state].overall > 50) {
-      hc += data[state].votes;
-    } else {
-      dt += data[state].votes;
-    }
-  });
-
-  return [
-    {"name": "Clinton", "votes": hc, "x": 25, "color": "blue"},
-    {"name": "Trump", "votes": dt, "x": 500, "color": "red"}
-  ];
-}
-
-var forecast = forecast();
-
-var forecastContainer = d3.select("#forecast").append("svg")
-                          .attr("width", 1000)
-                          .attr("height", 200);
-
-var text = forecastContainer.selectAll("text")
-                            .data(forecast)
-                            .enter()
-                            .append("text");
-
-var textLabels = text
-                 .attr("x", function(d) { return d.x; })
-                 .attr("y", 60)
-                 .text( function (d) { return d.name + ": " + d.votes; })
-                 .attr("font-size", "50px")
-                 .attr("fill", function(d) { return d.color; });
