@@ -119,7 +119,9 @@
         // debugger
 
         data[stateName].avg = Math.round((h - deltaDisp) * 10) / 10;
-        data[stateName].color = updateStateColor(stateName);
+        data[stateName].color = newStateColor(stateName);
+
+        updateStateColor("." + stateName, data[stateName].color);
         updateForecast();
 
         hue(h - deltaDisp);
@@ -143,7 +145,9 @@
         let deltaDisp = displacement / rng * 10;
 
         data[stateName].avg = Math.round((h + deltaDisp) * 10) / 10;
-        data[stateName].color = updateStateColor(stateName);
+        data[stateName].color = newStateColor(stateName);
+
+        updateStateColor("." + stateName, data[stateName].color);
         updateForecast();
 
         hue(h + deltaDisp);
@@ -264,7 +268,7 @@
         svg2.style("background-color", allColor(h));
 
         d3.select("#SS2div").selectAll("text").remove();
-        d3.select("#SS2div").text(function(d) {return stateName + " Women: " + data[stateName].avg;});
+        d3.select("#SS2div").text(function(d) {return stateName + " Women: " + Math.round(h * 10) / 10;});
 
         // reRender(d.id);
       }
@@ -318,7 +322,7 @@
         svg3.style("background-color", allColor(h));
 
         d3.select("#SS3div").selectAll("text").remove();
-        d3.select("#SS3div").text(function(d) {return stateName + " Men: " + data[stateName].avg;});
+        d3.select("#SS3div").text(function(d) {return stateName + " Men: " + Math.round(h * 10) / 10;});
 
         // reRender(d.id);
       }
@@ -377,7 +381,6 @@ function newStateColor(state) {
 }
 
 function updateStateColor(state, color) {
-  // debugger
   d3.select("#statesvg").selectAll(state)
     // .style("fill", function(state){ return sampleData[state].color; });
     .style("fill", color);

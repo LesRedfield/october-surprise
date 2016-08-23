@@ -65,11 +65,43 @@
 //   });
 // });
 
+function updateStates() {
+  ["HI", "AK", "FL", "SC", "GA", "AL", "NC", "TN", "RI", "CT", "MA",
+  "ME", "NH", "VT", "NY", "NJ", "PA", "DE", "MD", "WV", "KY", "OH",
+  "MI", "WY", "MT", "ID", "WA", "TX", "CA", "AZ", "NV", "UT",
+  "CO", "NM", "OR", "ND", "SD", "NE", "IA", "MS", "IN", "IL", "MN",
+  "WI", "MO", "AR", "OK", "KS", "LA", "VA"]
+  	.forEach(function(stateName) {
+      let nat = sampleData.National;
+      let orig = data[stateName].overall;
+      let shiftRate;
+
+      // debugger
+
+      if (nat >= 53.7) {
+        shiftRate = (nat - 53.7) / 46.3;
+        sampleData[stateName].avg = orig + (100 - orig) * shiftRate;
+      } else {
+        shiftRate = (53.7 - nat) / 53.7;
+        sampleData[stateName].avg = orig - 53.7 * shiftRate;
+      }
+
+      sampleData[stateName].color = newStateColor(stateName);
+
+      updateStateColor("." + stateName, sampleData[stateName].color);
+  	});
+
+  updateForecast();
+}
+
 function allColor(h) {
   return d3.hsl(h, 0.8, 0.8);
 }
 
 function renderSliders1(h) {
+  sampleData.National = Math.round(h * 10) / 10;
+  updateStates();
+
   hue(h);
   hue2(h + (50 - Math.abs(h - 50)) / 5);
   hue3(h - (50 - Math.abs(h - 50)) / 5);
@@ -92,6 +124,8 @@ function renderSliders2(h) {
 
   // debugger
 
+  sampleData.National = Math.round((h - deltaDisp) * 10) / 10;
+
   hue(h - deltaDisp);
   hue2(h);
   hue3(h - (2 * deltaDisp));
@@ -111,6 +145,8 @@ function renderSliders3(h) {
   }
   // debugger
   let deltaDisp = displacement / rng * 10;
+
+  sampleData.National = Math.round((h + deltaDisp) * 10) / 10;
 
   hue(h + deltaDisp);
   hue2(h + (2 * deltaDisp));
@@ -161,7 +197,7 @@ var handle = slider.insert("circle", ".track-overlay")
 slider.transition() // Gratuitous intro!
 .duration(750)
 .tween("hue", function() {
-  var i = d3.interpolate(0, 50);
+  var i = d3.interpolate(0, 53.7);
   return function(t) { renderSliders1(i(t)); };
 });
 
@@ -170,6 +206,9 @@ function hue(h) {
   // debugger
   handle.attr("cx", x(h));
   svg.style("background-color", allColor(h));
+
+  d3.select("#NS1div").selectAll("text").remove();
+  d3.select("#NS1div").text(function(d) {return "National: " + sampleData.National;});
 }
 
 
@@ -225,6 +264,8 @@ function hue2(h) {
   handle2.attr("cx", xb(h));
   svg2.style("background-color", allColor(h));
 
+  d3.select("#NS2div").selectAll("text").remove();
+  d3.select("#NS2div").text(function(d) {return "National Women: " + Math.round(h * 10) / 10;});
 }
 
 var svg3 = d3.select("#svg3"),
@@ -278,4 +319,6 @@ function hue3(h) {
   handle3.attr("cx", xc(h));
   svg3.style("background-color", allColor(h));
 
+  d3.select("#NS3div").selectAll("text").remove();
+  d3.select("#NS3div").text(function(d) {return "National Men: " + Math.round(h * 10) / 10;});
 }
