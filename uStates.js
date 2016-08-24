@@ -63,8 +63,8 @@
 			d3.select("#tooltip").html(toolTip(d.n, data[d.id]))
 				// .style("left", (d3.event.pageX + 50) + "px")
 				// .style("top", (d3.event.pageY + 50) + "px");
-        .style("right", 500 + "px")
-        .style("top", 100 + "px");
+        .style("right", 300 + "px")
+        .style("top", 150 + "px");
 		}
 
 		function mouseOut() {
@@ -72,6 +72,7 @@
 		}
 
     function clicked(d) {
+      // d3.select("#tooltip").transition().duration(500).style("opacity", 0);
 
       d3.select("#svgSS1").selectAll("*").remove();
       d3.select("#svgSS2").selectAll("*").remove();
