@@ -5,19 +5,11 @@
     <!-- <script src="http://d3js.org/topojson.v1.min.js"></script> -->
     <script src="https://d3js.org/d3.v4.min.js"  charset="utf-8"></script>
 
-    <!-- <script src="node_modules/datamaps/dist/datamaps.all.min.js"></script> -->
     <script type="application/javascript" src="data.js"></script>
 
-    <!-- FontAwesome -->
-    <!-- <link href="./lib/font-awesome/css/font-awesome.min.css" type="text/css" rel="stylesheet"> -->
 
     <!-- Jquery -->
     <script src="./lib/jquery-1.10.2.js"></script>
-
-    <!-- Dragdealer JS -->
-    <!-- <script src="./src/dragdealer.js"></script> -->
-    <!-- Dragdealer CSS -->
-    <!-- <link  href="./src/dragdealer.css" rel="stylesheet" type="text/css"> -->
 
   </head>
 
@@ -30,22 +22,37 @@
     <div id="feature" class="group">
 
       <div id="nationalSliders">
-        <div id="NS1div">
-          <br></br>
-        </div>
-        <svg width="200" height="50" id="svg1" class="nat-slide"></svg>
-        <br></br>
 
-        <div id="NS2div">
-          <br></br>
+        <div class="slider-container">
+          <div class="slider-row group" id="nat" width="200" height="60">
+            <div id="hc-1" class="hc"></div>
+            <svg width="200" height="60" id="svg1" class="nat-slide">
+              <div id="middle-1" class="middle"></div>
+            </svg>
+            <div id="dt-1" class="dt"></div>
+          </div>
         </div>
-        <svg width="200" height="50" id="svg2" class="nat-slide"></svg>
-        <br></br>
 
-        <div id="NS3div">
-          <br></br>
+        <div class="slider-container">
+          <div class="slider-row group" id="nat-women" width="200" height="60">
+            <div id="hc-2" class="hc"></div>
+            <svg width="200" height="60" id="svg2" class="nat-slide">
+              <div id="middle-2" class="middle"></div>
+            </svg>
+            <div id="dt-2" class="dt"></div>
+          </div>
         </div>
-        <svg width="200" height="50" id="svg3" class="nat-slide"></svg>
+
+        <div class="slider-container">
+          <div class="slider-row group" id="nat-men" width="200" height="60">
+            <div id="hc-3" class="hc"></div>
+            <svg width="200" height="60" id="svg3" class="nat-slide">
+              <div id="middle-3" class="middle"></div>
+            </svg>
+            <div id="dt-3" class="dt"></div>
+          </div>
+        </div>
+
       </div>
 
 
@@ -57,26 +64,39 @@
       </div>
 
       <div id="stateSliders">
-        <div id="SS1div">
-          <br></br>
-        </div>
-        <svg width="200" height="50" id="svgSS1"></svg>
-        <br></br>
 
-        <div id="SS2div">
-          <br></br>
+        <div class="slider-container">
+          <div class="slider-row group" id="ss" width="200" height="60">
+            <div id="hc-SS-1" class="hc"></div>
+            <svg width="0" height="60" id="svgSS1" class="state-slide">
+              <div id="middle-SS-1" class="middle"></div>
+            </svg>
+            <div id="dt-SS-1" class="dt"></div>
+          </div>
         </div>
-        <svg width="200" height="50" id="svgSS2"></svg>
-        <br></br>
 
-        <div id="SS3div">
-          <br></br>
+        <div class="slider-container">
+          <div class="slider-row group" id="ss" width="200" height="60">
+            <div id="hc-SS-2" class="hc"></div>
+            <svg width="0" height="60" id="svgSS2" class="state-slide">
+              <div id="middle-SS-2" class="middle"></div>
+            </svg>
+            <div id="dt-SS-2" class="dt"></div>
+          </div>
         </div>
-        <svg width="200" height="50" id="svgSS3"></svg>
-      </div>
+
+        <div class="slider-container">
+          <div class="slider-row group" id="ss" width="200" height="60">
+            <div id="hc-SS-3" class="hc"></div>
+            <svg width="0" height="60" id="svgSS3" class="state-slide">
+              <div id="middle-SS-3" class="middle"></div>
+            </svg>
+            <div id="dt-SS-3" class="dt"></div>
+          </div>
+
+        </div>
 
     </div>
-
 
     <!-- <div id="map" style="position: relative; width: 500px; height: 300px;"></div> -->
 

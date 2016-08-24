@@ -123,7 +123,7 @@ table {
   float: left;
   display: inline-block;
   position: relative;
-	width: calc(100% - 420px);
+	width: calc(100% - 640px);
 	padding-bottom: 42%;
 	vertical-align: middle;
 	overflow: hidden;
@@ -142,12 +142,73 @@ table {
 
 #feature {
   /*display: flex;*/
-  background-color: #85F5B1;
+  background-color: #CEDCD3;
   padding-top: 50px;
   padding-bottom: 50px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
 }
 
-.nat-slide {
-  /*width: 300px;
-  height: 50px;*/
+.state-slide {
+  float: left;
+  overflow: hidden;
+  /*position: absolute;
+  right: 40px;
+  left: 40px;*/
+}
+
+.hc, .dt, .nat-slide {
+  float: left;
+}
+
+.hc, .dt {
+  width: 40px;
+  height: 60px;
+  color: white;
+  line-height: 60px;
+  /*overflow: hidden;*/
+}
+
+.hc, .dt, .middle {
+  text-align: center;
+  font-weight: bold;
+}
+
+.hc {
+  background-color: blue;
+  border-radius: 10px 0 0 10px;
+}
+
+.dt {
+  background-color: red;
+  border-radius: 0 10px 10px 0;
+  /*margin-right: 200px;*/
+}
+
+#dt-SS-1 {
+  position: absolute;
+  right: 0;
+
+}
+
+.middle {
+  position: absolute;
+  padding-left: 100px;
+  padding-top: 5px;
+}
+
+#middle-2 {
+  padding-left: 105px;
+}
+
+#middle-3 {
+  padding-left: 118px;
+}
+
+.slider-row {
+  position: relative;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  min-width: 80px;
 }

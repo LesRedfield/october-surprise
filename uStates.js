@@ -79,9 +79,48 @@
 
       let stateName = d.id;
 
-      d3.select("#SS1div").text(function(d) {return stateName + ": " + data[stateName].avg;});
-      d3.select("#SS2div").text(function(d) {return stateName + " Women: " + data[stateName].avg;});
-      d3.select("#SS3div").text(function(d) {return stateName + " Men: " + data[stateName].avg;});
+      // d3.select("#SS1div").text(function(d) {return stateName + ": " + data[stateName].avg;});
+      // d3.select("#SS2div").text(function(d) {return stateName + " Women: " + data[stateName].avg;});
+      // d3.select("#SS3div").text(function(d) {return stateName + " Men: " + data[stateName].avg;});
+
+      d3.select("#svgSS1").transition().attr("width", "200px");
+      d3.select("#svgSS2").transition().attr("width", "200px");
+      d3.select("#svgSS3").transition().attr("width", "200px");
+
+      // d3.select("#ss").transition().attr("width", "280px");
+      // d3.select("#ss").transition().attr("width", "280px");
+      // d3.select("#ss").transition().attr("width", "280px");
+
+
+
+      d3.select("#hc-SS-1").selectAll("text").remove();
+      d3.select("#hc-SS-1").text(function(d) {return Math.round(10 * data[stateName].avg) / 10;});
+
+      d3.select("#middle-SS-1").selectAll("text").remove();
+      // d3.select("#middle-SS-1").text(function(d) {return "OVERALL";});
+
+      d3.select("#dt-SS-1").selectAll("text").remove();
+      d3.select("#dt-SS-1").text(function(d) {return Math.round(10 * (100 - data[stateName].avg)) / 10;});
+
+
+      // d3.select("#hc-SS-2").selectAll("text").remove();
+      // d3.select("#hc-SS-2").text(function(d) {return Math.round(10 * data[stateName].avg) / 10;});
+      //
+      // d3.select("#middle-SS-2").selectAll("text").remove();
+      // d3.select("#middle-SS-2").text(function(d) {return "WOMEN";});
+      //
+      // d3.select("#dt-SS-2").selectAll("text").remove();
+      // d3.select("#dt-SS-2").text(function(d) {return Math.round(10 * (100 - data[stateName].avg)) / 10;});
+      //
+      //
+      // d3.select("#hc-SS-3").selectAll("text").remove();
+      // d3.select("#hc-SS-3").text(function(d) {return Math.round(10 * data[stateName].avg) / 10;});
+      //
+      // d3.select("#middle-SS-3").selectAll("text").remove();
+      // d3.select("#middle-SS-3").text(function(d) {return "MEN";});
+      //
+      // d3.select("#dt-SS-3").selectAll("text").remove();
+      // d3.select("#dt-SS-3").text(function(d) {return Math.round(10 * (100 - data[stateName].avg)) / 10;});
 
 
       function allColor(h) {
@@ -158,17 +197,19 @@
 
       var svg = d3.select("#svgSS1"),
           margin = {right: 15, left: 15},
-          width = +svg.attr("width") - margin.left - margin.right,
+          // width = +svg.attr("width") - margin.left - margin.right,
+          width = 170,
           height = +svg.attr("height");
 
       var x = d3.scaleLinear()
-          .domain([20, 80])
+          .domain([0, 100])
           .range([0, width])
           .clamp(true);
 
       var slider = svg.append("g")
+          // .transition()
           .attr("class", "slider")
-          .attr("transform", "translate(" + margin.left + "," + height / 2 + ")");
+          .attr("transform", "translate(" + margin.left + "," + height * (3 / 5) + ")");
 
       slider.append("line")
           .attr("class", "track")
@@ -197,7 +238,7 @@
           .attr("r", 9);
 
       slider.transition() // Gratuitous intro!
-          .duration(250)
+          .duration(2500)
           .tween("hue", function() {
             var i = d3.interpolate(20, sampleData[stateName].avg);
             return function(t) { renderSliders1(i(t)); };
@@ -211,10 +252,17 @@
 
         svg.style("background-color", allColor(h));
 
-        d3.select("#SS1div").selectAll("text").remove();
-        d3.select("#SS1div").text(function(d) {return stateName + ": " + data[stateName].avg;});
+        // d3.select("#SS1div").selectAll("text").remove();
+        // d3.select("#SS1div").text(function(d) {return stateName + ": " + data[stateName].avg;});
 
-        // reRender(d.id);
+        d3.select("#hc-SS-1").selectAll("text").remove();
+        d3.select("#hc-SS-1").text(function(d) {return Math.round(10 * h) / 10;});
+
+        d3.select("#middle-SS-1").selectAll("text").remove();
+        d3.select("#middle-SS-1").text(function(d) {return "OVERALL";});
+
+        d3.select("#dt-SS-1").selectAll("text").remove();
+        d3.select("#dt-SS-1").text(function(d) {return Math.round(10 * (100 - h)) / 10;});
       }
 
 
@@ -222,13 +270,13 @@
       var svg2 = d3.select("#svgSS2");
 
       var xb = d3.scaleLinear()
-          .domain([20, 80])
+          .domain([0, 100])
           .range([0, width])
           .clamp(true);
 
       var slider2 = svg2.append("g")
           .attr("class", "slider")
-          .attr("transform", "translate(" + margin.left + "," + height / 2 + ")");
+          .attr("transform", "translate(" + margin.left + "," + height * (3 / 5) + ")");
 
       slider2.append("line")
           .attr("class", "track")
@@ -267,22 +315,29 @@
         handle2.attr("cx", xb(h));
         svg2.style("background-color", allColor(h));
 
-        d3.select("#SS2div").selectAll("text").remove();
-        d3.select("#SS2div").text(function(d) {return stateName + " Women: " + Math.round(h * 10) / 10;});
+        // d3.select("#SS2div").selectAll("text").remove();
+        // d3.select("#SS2div").text(function(d) {return stateName + " Women: " + Math.round(h * 10) / 10;});
 
-        // reRender(d.id);
+        d3.select("#hc-SS-2").selectAll("text").remove();
+        d3.select("#hc-SS-2").text(function(d) {return Math.round(10 * h) / 10;});
+
+        d3.select("#middle-SS-2").selectAll("text").remove();
+        d3.select("#middle-SS-2").text(function(d) {return "WOMEN";});
+
+        d3.select("#dt-SS-2").selectAll("text").remove();
+        d3.select("#dt-SS-2").text(function(d) {return Math.round(10 * (100 - h)) / 10;});
       }
 
       var svg3 = d3.select("#svgSS3");
 
       var xc = d3.scaleLinear()
-          .domain([20, 80])
+          .domain([0, 100])
           .range([0, width])
           .clamp(true);
 
       var slider3 = svg3.append("g")
           .attr("class", "slider")
-          .attr("transform", "translate(" + margin.left + "," + height / 2 + ")");
+          .attr("transform", "translate(" + margin.left + "," + height * (3 / 5) + ")");
 
       slider3.append("line")
           .attr("class", "track")
@@ -321,10 +376,17 @@
         handle3.attr("cx", xc(h));
         svg3.style("background-color", allColor(h));
 
-        d3.select("#SS3div").selectAll("text").remove();
-        d3.select("#SS3div").text(function(d) {return stateName + " Men: " + Math.round(h * 10) / 10;});
+        // d3.select("#SS3div").selectAll("text").remove();
+        // d3.select("#SS3div").text(function(d) {return stateName + " Men: " + Math.round(h * 10) / 10;});
 
-        // reRender(d.id);
+        d3.select("#hc-SS-3").selectAll("text").remove();
+        d3.select("#hc-SS-3").text(function(d) {return Math.round(10 * h) / 10;});
+
+        d3.select("#middle-SS-3").selectAll("text").remove();
+        d3.select("#middle-SS-3").text(function(d) {return "MEN";});
+
+        d3.select("#dt-SS-3").selectAll("text").remove();
+        d3.select("#dt-SS-3").text(function(d) {return Math.round(10 * (100 - h)) / 10;});
       }
     }
 
@@ -372,8 +434,6 @@ function stateColor(state) {
 }
 
 function newStateColor(state) {
-
-
   if (sampleData[state].avg > 54) {
     return "blue";
   } else if (sampleData[state].avg > 50) {
@@ -382,6 +442,14 @@ function newStateColor(state) {
     return "salmon";
   } else {
     return "red";
+  }
+}
+
+function newHandleColor(h) {
+  if (h > 50) {
+    return "lightblue";
+  } else {
+    return "salmon";
   }
 }
 
