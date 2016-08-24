@@ -1,3 +1,29 @@
+html, body, header, nav, h1, a,
+ul, li, strong, main, button, i,
+section, img, div, h2, p,
+fieldset, label, textarea,
+span, article, footer, time, small {
+ margin: 0;
+ padding: 0;
+ border: 0;
+ outline: 0;
+ font: inherit;
+ color: inherit;
+ text-align: inherit;
+ text-decoration: inherit;
+ vertical-align: inherit;
+ box-sizing: inherit;
+ background: transparent;
+}
+
+/* Clearfix */
+
+.group:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
 table {
   color: inherit;
 }
@@ -7,9 +33,11 @@ table {
 	stroke: #a9a9a9;
 	stroke-width: 1;
 }
+
 .state:hover{
 	fill-opacity: 0.5;
 }
+
 #tooltip {
 	position: absolute;
 	text-align: center;
@@ -47,54 +75,6 @@ table {
 }
 #tooltip tr td:nth-child(2){
 	text-align: center;
-}
-
-#just-a-slider {
-  /*float: left;*/
-  /*left: 50%;
-  top: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);*/
-
-  height: 30px;
-  width: 300px;
-  border-radius: 3px;
-}
-
-#just-a-slider .handle {
-  height: 30px;
-  line-height: 30px;
-  border-radius: 3px;
-}
-
-#just-a-slider .value {
-  padding: 0 0 0 5px;
-  font-size: 15px;
-  font-weight: bold;
-}
-
-#overall-slider {
-  /*float: left;*/
-  /*left: 50%;
-  top: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);*/
-
-  height: 30px;
-  width: 300px;
-  border-radius: 3px;
-}
-
-#overall-slider .handle {
-  height: 30px;
-  line-height: 30px;
-  border-radius: 3px;
-}
-
-#overall-slider .value {
-  padding: 0 0 0 5px;
-  font-size: 15px;
-  font-weight: bold;
 }
 
 .ticks {
@@ -135,14 +115,39 @@ table {
   float: left;
 }
 
-#national {
+#stateSliders, #nationalSliders {
+  height: 100%;
+}
+
+#svg-container {
   float: left;
+  display: inline-block;
+  position: relative;
+	width: calc(100% - 420px);
+	padding-bottom: 42%;
+	vertical-align: middle;
+	overflow: hidden;
 }
 
 #statesvg {
-  /*position: relative;*/
+  display: inline-block;
+	position: absolute;
+	top: 0;
+	left: 0;
 }
 
 #forecast {
   /*height: 200px;*/
+}
+
+#feature {
+  /*display: flex;*/
+  background-color: #85F5B1;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.nat-slide {
+  /*width: 300px;
+  height: 50px;*/
 }

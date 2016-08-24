@@ -328,6 +328,11 @@
       }
     }
 
+    // d3.select(id)
+    // .attr("preserveAspectRatio", "xMinYMin meet")
+    // .attr("viewBox", "0 0 600 400")
+
+
 		d3.select(id).selectAll(".state")
 			.data(uStatePaths).enter().append("path")
       .attr("class", function(d){ return "state " + d.id; })
@@ -443,7 +448,7 @@ var forecast = forecast();
 
 var forecastContainer = d3.select("#forecast").append("svg")
                           .attr("width", 1000)
-                          .attr("height", 200);
+                          .attr("height", 100);
 
 var text = forecastContainer.selectAll("text")
                             .data(forecast)
