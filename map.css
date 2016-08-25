@@ -124,7 +124,7 @@ table {
   display: inline-block;
   position: relative;
 	width: calc(100% - 560px);
-	padding-bottom: 34%;
+	padding-bottom: calc(0.67 * (100vw - 650px));
 	vertical-align: middle;
 	overflow: hidden;
 }

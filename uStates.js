@@ -57,13 +57,24 @@
 
 
 	uStates.draw = function(id, data, toolTip) {
-		function mouseOver(d) {
+
+		function mouseOverDT(d) {
+			d3.select("#tooltip").transition().duration(200).style("opacity", 0.9);
+
+			d3.select("#tooltip").html(toolTip("Donald", "WINNING"))
+				// .style("left", (d3.event.pageX + 50) + "px")
+				// .style("top", (d3.event.pageY + 50) + "px");
+        .style("right", 1100 + "px")
+        .style("top", 125 + "px");
+		}
+
+    function mouseOver(d) {
 			d3.select("#tooltip").transition().duration(200).style("opacity", 0.9);
 
 			d3.select("#tooltip").html(toolTip(d.n, data[d.id]))
 				// .style("left", (d3.event.pageX + 50) + "px")
 				// .style("top", (d3.event.pageY + 50) + "px");
-        .style("right", 300 + "px")
+        .style("right", 200 + "px")
         .style("top", 150 + "px");
 		}
 
@@ -403,6 +414,9 @@
 			.style("fill",function(d){ return data[d.id].color; })
 			.on("mouseover", mouseOver).on("mouseout", mouseOut)
       .on("click", clicked);
+
+    d3.select("#nationalSliders").selectAll(".dt")
+      .on("mouseover", mouseOverDT).on("mouseout", mouseOut);
 	};
 
 	this.uStates = uStates;
@@ -461,11 +475,18 @@ function updateStateColor(state, color) {
 }
 
 function tooltipHtml(n, d){
-	return "<h4>"+n+"</h4><table>"+
+  if (n === "Donald") {
+    return "<h4>CHINA!</h4>";
+
+  } else {
+
+  return "<h4>"+n+"</h4><table>"+
 		"<tr><td>Men</td><td>"+(d.men)+"</td></tr>"+
 		"<tr><td>Average</td><td>"+(d.avg)+"</td></tr>"+
 		"<tr><td>Women</td><td>"+(d.women)+"</td></tr>"+
 		"</table>";
+
+  }
 }
 
 var sampleData = {};
