@@ -155,7 +155,7 @@ function hue(h) {
   // debugger
   handle.attr("cx", x(h));
 
-  svg.style("background-color", newHandleColor(h));
+  // svg.style("background-color", newHandleColor(h));
 
   d3.select("#hc-1").selectAll("text").remove();
   d3.select("#hc-1").text(function(d) {return Math.round(10 * sampleData.National) / 10;});
@@ -218,7 +218,7 @@ var handle2 = slider2.insert("circle", ".track-overlay")
 
 function hue2(h) {
   handle2.attr("cx", xb(h));
-  svg2.style("background-color", newHandleColor(h));
+  // svg2.style("background-color", newHandleColor(h));
 
   d3.select("#hc-2").selectAll("text").remove();
   d3.select("#hc-2").text(function(d) {return Math.round(10 * h) / 10;});
@@ -280,7 +280,7 @@ var handle3 = slider3.insert("circle", ".track-overlay")
 function hue3(h) {
   handle3.attr("cx", xc(h));
 
-  svg3.style("background-color", newHandleColor(h));
+  // svg3.style("background-color", newHandleColor(h));
 
   d3.select("#hc-3").selectAll("text").remove();
   d3.select("#hc-3").text(function(d) {return Math.round(10 * h) / 10;});

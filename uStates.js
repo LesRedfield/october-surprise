@@ -69,6 +69,10 @@
 		}
 
     function mouseOver(d) {
+      // let state = "." + d.id;
+      //
+      // d3.select("#statesvg").select(state).transition().style("fill", "url(#hill-pic-1)");
+
 			d3.select("#tooltip").transition().duration(200).style("opacity", 0.9);
 
 			d3.select("#tooltip").html(toolTip(d.n, data[d.id]))
@@ -79,11 +83,35 @@
 		}
 
 		function mouseOut() {
+      // d3.select("#statesvg").selectAll(".state")
+      //   .style("fill", "url(#hill-pic-1)");
+
 			d3.select("#tooltip").transition().duration(500).style("opacity", 0);
 		}
 
     function clicked(d) {
       // d3.select("#tooltip").transition().duration(500).style("opacity", 0);
+
+      // let x1 = 0;
+      // let y1 = 0;
+      //
+      // if (d3.event.offsetX > 75) {
+      //   x1 = d3.event.offsetX - 75;
+      // }
+      //
+      // let x2 = x1 + 150;
+      //
+      // if (d3.event.offsetY > 75) {
+      //   y1 = d3.event.offsetY - 75;
+      // }
+      //
+      // let y2 = y1 + 150;
+      //
+      // let vb = "" + x1 + " " + y1 + " " + x2 + " " + y2;
+      //
+      // d3.select("#statesvg")
+      //   .attr("viewBox", vb);
+
 
       d3.select("#svgSS1").selectAll("*").remove();
       d3.select("#svgSS2").selectAll("*").remove();
@@ -262,7 +290,7 @@
 
         // svg.text(function(d) {return stateName + ": " + data[stateName].avg;});
 
-        svg.style("background-color", allColor(h));
+        // svg.style("background-color", allColor(h));
 
         // d3.select("#SS1div").selectAll("text").remove();
         // d3.select("#SS1div").text(function(d) {return stateName + ": " + data[stateName].avg;});
@@ -325,7 +353,7 @@
 
       function hue2(h) {
         handle2.attr("cx", xb(h));
-        svg2.style("background-color", allColor(h));
+        // svg2.style("background-color", allColor(h));
 
         // d3.select("#SS2div").selectAll("text").remove();
         // d3.select("#SS2div").text(function(d) {return stateName + " Women: " + Math.round(h * 10) / 10;});
@@ -386,7 +414,7 @@
 
       function hue3(h) {
         handle3.attr("cx", xc(h));
-        svg3.style("background-color", allColor(h));
+        // svg3.style("background-color", allColor(h));
 
         // d3.select("#SS3div").selectAll("text").remove();
         // d3.select("#SS3div").text(function(d) {return stateName + " Men: " + Math.round(h * 10) / 10;});
@@ -417,19 +445,11 @@
 
     d3.select("#nationalSliders").selectAll(".dt")
       .on("mouseover", mouseOverDT).on("mouseout", mouseOut);
+
 	};
 
 	this.uStates = uStates;
 })();
-
-// function reRender(state) {
-//   // debugger
-//   d3.select("#statesvg").selectAll(".state")
-//     // .data(uStatePaths).enter().append("path").attr("class","state").attr("d",function(d){ return d.d;})
-//     .style("fill",function(state){ return sampleData[state].color; });
-//     // .on("mouseover", mouseOver).on("mouseout", mouseOut)
-//     // .on("click", clicked);
-// }
 
 function render() {
   // transitionRender();
@@ -460,18 +480,65 @@ function newStateColor(state) {
   }
 }
 
-function newHandleColor(h) {
-  if (h > 50) {
-    return "lightblue";
-  } else {
-    return "salmon";
-  }
-}
+// function newHandleColor(h) {
+//   if (h > 50) {
+//     return "lightblue";
+//   } else {
+//     return "salmon";
+//   }
+// }
 
 function updateStateColor(state, color) {
-  d3.select("#statesvg").selectAll(state)
+
+
+  // if (color === "blue" || color === "lightblue") {
+  //   d3.select("#statesvg").select("#hill-pic-1").remove();
+  //   // debugger
+  //   d3.select("#statesvg").append("defs")
+  //     .append("pattern")
+  //       .attr("id", "hill-pic-1")
+  //       .attr('patternUnits', 'userSpaceOnUse')
+  //       .attr("width", 1000)
+  //       .attr("height", 1000)
+  //     .append("image")
+  //       // .attr("xlink:href", "assets/images/hillary-rodham-clinton-983ef53096a65c47.jpg")
+  //       .attr("xlink:href", "assets/images/hillary-1.gif")
+  //       .attr("x", 0)
+  //       .attr("y", -300)
+  //       .attr("width", 1000)
+  //       .attr("height", 1000);
+  //
+  //   d3.select("#statesvg").select(state)
+  //     .style("fill", "url(#hill-pic-1)");
+      // .style("fill", "red");
+
+  // } else if (color === "red" || color === "salmon") {
+  //   d3.select("#statesvg").select("#trump-pic-1").remove();
+  //
+  //
+  //   d3.select("#statesvg").append("defs")
+  //     .append("pattern")
+  //       .attr("id", "trump-pic-1")
+  //       .attr('patternUnits', 'userSpaceOnUse')
+  //       .attr("width", 1200)
+  //       .attr("height", 1200)
+  //     .append("image")
+  //       // .attr("xlink:href", "assets/images/hillary-rodham-clinton-983ef53096a65c47.jpg")
+  //       .attr("xlink:href", "assets/images/trump-1.gif")
+  //       .attr("x", -50)
+  //       .attr("y", -300)
+  //       .attr("width", 1200)
+  //       .attr("height", 1200);
+  //
+  //   d3.select("#statesvg").select(state)
+  //     .style("fill", "url(#trump-pic-1)");
+
+  // } else {
+  d3.select("#statesvg").select(state)
     // .style("fill", function(state){ return sampleData[state].color; });
     .style("fill", color);
+      //  .style("fill", "url(#hill-pic-1)");
+  // }
 }
 
 function tooltipHtml(n, d){

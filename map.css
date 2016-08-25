@@ -16,6 +16,8 @@ span, article, footer, time, small {
  background: transparent;
 }
 
+
+
 /* Clearfix */
 
 .group:after {
@@ -29,13 +31,14 @@ table {
 }
 
 .state{
-	fill: none;
+	/*fill: url(#hill-pic-1);*/
 	stroke: #a9a9a9;
 	stroke-width: 1;
 }
 
 .state:hover{
 	fill-opacity: 0.5;
+  /*fill: url(#hill-pic-1);*/
 }
 
 #tooltip {
@@ -79,6 +82,7 @@ table {
 
 .ticks {
   font: 10px sans-serif;
+  color: white;
 }
 
 .track,
@@ -105,7 +109,8 @@ table {
 }
 
 .handle {
-  fill: #fff;
+  /*fill: #fff;*/
+  fill: red;
   stroke: #000;
   stroke-opacity: 0.5;
   stroke-width: 1.25px;
@@ -138,10 +143,14 @@ table {
 
 #forecast {
   /*height: 200px;*/
+  /*background: linear-gradient(135deg, red, blue);*/
 }
 
 #feature {
-  /*display: flex;*/
+  /*background-image: url("assets/images/hillary-rodham-clinton-983ef53096a65c47.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;*/
   background-color: #CEDCD3;
   padding-top: 50px;
   padding-bottom: 50px;
@@ -156,6 +165,10 @@ table {
   /*position: absolute;
   right: 40px;
   left: 40px;*/
+}
+
+.nat-slide, .state-slide {
+  background: white;
 }
 
 .hc, .dt, .nat-slide {
@@ -196,6 +209,7 @@ table {
   position: absolute;
   padding-left: 100px;
   padding-top: 5px;
+  color: blue;
 }
 
 #middle-2 {
