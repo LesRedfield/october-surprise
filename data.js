@@ -6,6 +6,7 @@ data = {
   "GA": {overall: 49.7, votes: 16},
   "AL": {overall: 40.6, votes: 9},
   "NC": {overall: 51.7, votes: 15},
+  "DC": {overall: 73.7, votes: 3},
   "TN": {overall: 44.7, votes: 11},
   "RI": {overall: 60.8, votes: 4},
   "CT": {overall: 56.2, votes: 7},

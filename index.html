@@ -16,86 +16,104 @@
 
   <body>
 
-    <div id="forecast">
-
+    <div id="forecast" class="group">
+      <div id="left-box"></div>
+      <svg id="fc-box"></svg>
+      <!-- <svg id="fc-box"></svg> -->
+      <div id="right-box"></div>
     </div>
 
-    <div id="feature" class="group">
 
-      <div id="nationalSliders">
 
-        <div class="slider-container">
-          <div class="slider-row group" id="nat" width="200" height="60">
-            <div id="hc-1" class="hc"></div>
-            <svg width="200" height="60" id="svg1" class="nat-slide">
-              <div id="middle-1" class="middle"></div>
-            </svg>
-            <div id="dt-1" class="dt"></div>
+    <div>
+      <div id="feature" class="group">
+
+        <div id="nationalSliders">
+
+          <div class="slider-container">
+            <div class="slider-row group" id="nat" width="200" height="60">
+              <div id="hc-1" class="hc"></div>
+              <svg width="200" height="60" id="svg1" class="nat-slide">
+                <div id="middle-1" class="middle"></div>
+              </svg>
+              <div id="dt-1" class="dt"></div>
+            </div>
           </div>
+
+          <div class="slider-container">
+            <div class="slider-row group" id="nat-women" width="200" height="60">
+              <div id="hc-2" class="hc"></div>
+              <svg width="200" height="60" id="svg2" class="nat-slide">
+                <div id="middle-2" class="middle"></div>
+              </svg>
+              <div id="dt-2" class="dt"></div>
+            </div>
+          </div>
+
+          <div class="slider-container">
+            <div class="slider-row group" id="nat-men" width="200" height="60">
+              <div id="hc-3" class="hc"></div>
+              <svg width="200" height="60" id="svg3" class="nat-slide">
+                <div id="middle-3" class="middle"></div>
+              </svg>
+              <div id="dt-3" class="dt"></div>
+            </div>
+          </div>
+
         </div>
 
-        <div class="slider-container">
-          <div class="slider-row group" id="nat-women" width="200" height="60">
-            <div id="hc-2" class="hc"></div>
-            <svg width="200" height="60" id="svg2" class="nat-slide">
-              <div id="middle-2" class="middle"></div>
-            </svg>
-            <div id="dt-2" class="dt"></div>
-          </div>
+
+        <!-- <div id="tooltip"></div> -->
+
+
+        <div id="svg-container">
+          <svg viewBox="0 0 960 640" preserveAspectRatio="xMinYMin meet" id="statesvg" class="svg-content"></svg>
         </div>
 
-        <div class="slider-container">
-          <div class="slider-row group" id="nat-men" width="200" height="60">
-            <div id="hc-3" class="hc"></div>
-            <svg width="200" height="60" id="svg3" class="nat-slide">
-              <div id="middle-3" class="middle"></div>
-            </svg>
-            <div id="dt-3" class="dt"></div>
-          </div>
-        </div>
+        <div id="stateSliders">
 
+          <div class="slider-container">
+            <div class="slider-row group" id="ss" width="200" height="60">
+              <div id="hc-SS-1" class="hc"></div>
+              <svg width="0" height="60" id="svgSS1" class="state-slide">
+                <div id="middle-SS-1" class="middle"></div>
+              </svg>
+              <div id="dt-SS-1" class="dt"></div>
+            </div>
+          </div>
+
+          <div class="slider-container">
+            <div class="slider-row group" id="ss" width="200" height="60">
+              <div id="hc-SS-2" class="hc"></div>
+              <svg width="0" height="60" id="svgSS2" class="state-slide">
+                <div id="middle-SS-2" class="middle"></div>
+              </svg>
+              <div id="dt-SS-2" class="dt"></div>
+            </div>
+          </div>
+
+          <div class="slider-container">
+            <div class="slider-row group" id="ss" width="200" height="60">
+              <div id="hc-SS-3" class="hc"></div>
+              <svg width="0" height="60" id="svgSS3" class="state-slide">
+                <div id="middle-SS-3" class="middle"></div>
+              </svg>
+              <div id="dt-SS-3" class="dt"></div>
+            </div>
+
+          </div>
+
+        </div>
       </div>
 
-
-      <div id="tooltip"></div>
-
-
-      <div id="svg-container">
-        <svg viewBox="0 0 960 640" preserveAspectRatio="xMinYMin meet" id="statesvg" class="svg-content"></svg>
+      <div class="group">
+        <div class="bot-nav group">
+          <div id="copyright" class="bot-nav-item">Copyright 2016 Les Redfield</div>
+          <a id="linkedin" href="https://www.linkedin.com/in/les-redfield">Linkedin</a>
+          <a id="github" href="https://github.com/LesRedfield">GitHub</a>
+          <a id="portfolio" href="http://lesredfield.github.io/">Portfolio</a>
+        </div>
       </div>
-
-      <div id="stateSliders">
-
-        <div class="slider-container">
-          <div class="slider-row group" id="ss" width="200" height="60">
-            <div id="hc-SS-1" class="hc"></div>
-            <svg width="0" height="60" id="svgSS1" class="state-slide">
-              <div id="middle-SS-1" class="middle"></div>
-            </svg>
-            <div id="dt-SS-1" class="dt"></div>
-          </div>
-        </div>
-
-        <div class="slider-container">
-          <div class="slider-row group" id="ss" width="200" height="60">
-            <div id="hc-SS-2" class="hc"></div>
-            <svg width="0" height="60" id="svgSS2" class="state-slide">
-              <div id="middle-SS-2" class="middle"></div>
-            </svg>
-            <div id="dt-SS-2" class="dt"></div>
-          </div>
-        </div>
-
-        <div class="slider-container">
-          <div class="slider-row group" id="ss" width="200" height="60">
-            <div id="hc-SS-3" class="hc"></div>
-            <svg width="0" height="60" id="svgSS3" class="state-slide">
-              <div id="middle-SS-3" class="middle"></div>
-            </svg>
-            <div id="dt-SS-3" class="dt"></div>
-          </div>
-
-        </div>
 
     </div>
 

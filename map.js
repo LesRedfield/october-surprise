@@ -1,7 +1,7 @@
 function updateStates() {
   ["HI", "AK", "FL", "SC", "GA", "AL", "NC", "TN", "RI", "CT", "MA",
   "ME", "NH", "VT", "NY", "NJ", "PA", "DE", "MD", "WV", "KY", "OH",
-  "MI", "WY", "MT", "ID", "WA", "TX", "CA", "AZ", "NV", "UT",
+  "MI", "WY", "MT", "ID", "WA", "TX", "CA", "AZ", "NV", "UT", "DC",
   "CO", "NM", "OR", "ND", "SD", "NE", "IA", "MS", "IN", "IL", "MN",
   "WI", "MO", "AR", "OK", "KS", "LA", "VA"]
   	.forEach(function(stateName) {
