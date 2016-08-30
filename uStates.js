@@ -128,6 +128,8 @@
       d3.select("#svgSS2").transition().attr("width", "200px");
       d3.select("#svgSS3").transition().attr("width", "200px");
 
+      d3.select("#state-label").transition().text( function(d) { return stateName; } );
+
       // d3.select("#ss").transition().attr("width", "280px");
       // d3.select("#ss").transition().attr("width", "280px");
       // d3.select("#ss").transition().attr("width", "280px");
@@ -459,25 +461,25 @@ function render() {
 
 function stateColor(state) {
   if (data[state].overall > 54) {
-    return "blue";
+    return "#0083D6";
   } else if (data[state].overall > 50) {
-    return "lightblue";
+    return "#76CAFF";
   } else if (data[state].overall > 46) {
     return "salmon";
   } else {
-    return "red";
+    return "#FF4D38";
   }
 }
 
 function newStateColor(state) {
   if (sampleData[state].avg > 54) {
-    return "blue";
+    return "#0083D6";
   } else if (sampleData[state].avg > 50) {
-    return "lightblue";
+    return "76CAFF";
   } else if (sampleData[state].avg > 46) {
     return "salmon";
   } else {
-    return "red";
+    return "#FF4D38";
   }
 }
 
@@ -596,8 +598,8 @@ function forecast() {
   });
 
   return [
-    {"name": "Clinton", "votes": hc, "x": 25, "color": "blue"},
-    {"name": "Trump", "votes": dt, "x": 500, "color": "red"}
+    {"name": "Clinton", "votes": hc, "x": 25, "color": "#0083D6"},
+    {"name": "Trump", "votes": dt, "x": 500, "color": "#FF4D38"}
   ];
 }
 
@@ -606,7 +608,7 @@ var forecast = forecast();
 
 var forecastContainer = d3.selectAll("#fc-box")
                           .attr("class", "top-bar")
-                          .attr("width", 575)
+                          .attr("width", 585)
                           .attr("height", 100);
 
 var text = forecastContainer.selectAll("text")
@@ -616,9 +618,10 @@ var text = forecastContainer.selectAll("text")
 
 var textLabels = text
                  .attr("x", function(d) { return d.x; })
-                 .attr("y", 60)
-                 .text( function (d) { return d.name + ": " + d.votes; })
-                 .attr("font-size", "50px")
+                 .attr("y", 75)
+                 .text( function (d) { return d.votes; })
+                 .attr("font-size", "75px")
+                 .attr("font-weight", "bold")
                  .attr("fill", function(d) { return d.color; });
 
 function updateForecast() {
@@ -641,8 +644,8 @@ function updateForecast() {
   });
 
   let forecast = [
-    {"name": "Clinton", "votes": hc, "x": 25, "color": "blue"},
-    {"name": "Trump", "votes": dt, "x": 300, "color": "red"}
+    {"name": "Clinton", "votes": hc, "x": 100, "color": "#0083D6"},
+    {"name": "Trump", "votes": dt, "x": 380, "color": "#FF4D38"}
   ];
 
   var text = forecastContainer.selectAll("text")
@@ -652,9 +655,11 @@ function updateForecast() {
 
   var textLabels = text
                   .attr("x", function(d) { return d.x; })
-                  .attr("y", 60)
-                  .text( function (d) { return d.name + ": " + d.votes; })
-                  .attr("font-size", "50px")
+                  .attr("y", 75)
+                  // .text( function (d) { return d.name + ": " + d.votes; })
+                  .text( function (d) { return d.votes; })
+                  .attr("font-size", "75px")
+                  .attr("font-weight", "bold")
                   .attr("fill", function(d) { return d.color; });
 
 }
