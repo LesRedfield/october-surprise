@@ -113,7 +113,6 @@
       // d3.select("#statesvg")
       //   .attr("viewBox", vb);
 
-
       d3.select("#svgSS1").selectAll("*").remove();
       d3.select("#svgSS2").selectAll("*").remove();
       d3.select("#svgSS3").selectAll("*").remove();
@@ -171,12 +170,19 @@
       }
 
       function renderSliders1(h) {
+
+        // let previous = data[stateName].avg;
         // debugger
         data[stateName].avg = Math.round(h * 10) / 10;
         data[stateName].color = newStateColor(stateName);
 
         updateStateColor("." + stateName, data[stateName].color);
         updateForecast();
+
+
+        // if (previous < 50 && h >= 50) {
+        //   document.getElementById('hillary-laughing-1').play();
+        // }
 
         hue(h);
         hue2(h + (50 - Math.abs(h - 50)) / 5);
@@ -625,6 +631,9 @@ var textLabels = text
                  .attr("fill", function(d) { return d.color; });
 
 function updateForecast() {
+
+  // let previous = parseInt(forecastContainer.selectAll("text").text());
+
   forecastContainer.selectAll("text").remove();
 
   let hc = 0;
@@ -647,6 +656,10 @@ function updateForecast() {
     {"name": "Clinton", "votes": hc, "x": 100, "color": "#0083D6"},
     {"name": "Trump", "votes": dt, "x": 380, "color": "#FF4D38"}
   ];
+
+  // if (previous < 270 && hc >= 270) {
+  //   document.getElementById('hillary-laughing-1').play();
+  // }
 
   var text = forecastContainer.selectAll("text")
                              .data(forecast)

@@ -1,4 +1,4 @@
-function updateStates() {
+function updateStates(previous) {
   ["HI", "AK", "FL", "SC", "GA", "AL", "NC", "TN", "RI", "CT", "MA",
   "ME", "NH", "VT", "NY", "NJ", "PA", "DE", "MD", "WV", "KY", "OH",
   "MI", "WY", "MT", "ID", "WA", "TX", "CA", "AZ", "NV", "UT", "DC",
@@ -9,7 +9,8 @@ function updateStates() {
       let orig = data[stateName].overall;
       let shiftRate;
 
-      // debugger
+      let previous = sampleData[stateName].avg;
+      let rand = Math.random();
 
       if (nat >= 53.7) {
         shiftRate = (nat - 53.7) / 46.3;
@@ -19,9 +20,24 @@ function updateStates() {
         sampleData[stateName].avg = orig - 53.7 * shiftRate;
       }
 
+
       sampleData[stateName].color = newStateColor(stateName);
 
       updateStateColor("." + stateName, sampleData[stateName].color);
+
+      if (previous < 50 && sampleData[stateName].avg >= 50) {
+        if (rand < 0.5) {
+          document.getElementById('hillary-laughing-1').play();
+        } else {
+          document.getElementById('hillary-laughing-2').play();
+        }
+      } else if (previous >= 50 && sampleData[stateName].avg < 50) {
+        if (rand < 0.5) {
+          document.getElementById('trump-china-1').play();
+        } else {
+          document.getElementById('trump-china-2').play();
+        }
+      }
   	});
 
   updateForecast();
@@ -44,6 +60,7 @@ function allColor(h) {
 }
 
 function renderSliders1(h) {
+
   sampleData.National = Math.round(h * 10) / 10;
   updateStates();
 
@@ -144,7 +161,7 @@ var handle = slider.insert("circle", ".track-overlay")
     .attr("r", 9);
 
 slider.transition() // Gratuitous intro!
-.duration(2500)
+.duration(5000)
 .tween("hue", function() {
   var i = d3.interpolate(34, 53.7);
   return function(t) { renderSliders1(i(t)); };
