@@ -25,27 +25,27 @@ function updateStates(previous) {
 
       updateStateColor("." + stateName, sampleData[stateName].color);
 
-      if (previous < 50 && sampleData[stateName].avg >= 50) {
-        if (rand < 0.25) {
-          document.getElementById('hillary-laughing-1').play();
-        } else if (rand < 0.50) {
-          document.getElementById('hillary-laughing-2').play();
-        } else if (rand < 0.75) {
-          document.getElementById('hillary-laughing-3').play();
-        } else {
-          document.getElementById('hillary-laughing-4').play();
-        }
-      } else if (previous >= 50 && sampleData[stateName].avg < 50) {
-        if (stateName === "DC") {
-          document.getElementById('trump-china-DC').play();
-        } else if (rand < 0.33) {
-          document.getElementById('trump-china-1').play();
-        } else if (rand < 0.66){
-          document.getElementById('trump-china-2').play();
-        } else {
-          document.getElementById('trump-china-3').play();
-        }
-      }
+      // if (previous < 50 && sampleData[stateName].avg >= 50) {
+      //   if (rand < 0.25) {
+      //     document.getElementById('hillary-laughing-1').play();
+      //   } else if (rand < 0.50) {
+      //     document.getElementById('hillary-laughing-2').play();
+      //   } else if (rand < 0.75) {
+      //     document.getElementById('hillary-laughing-3').play();
+      //   } else {
+      //     document.getElementById('hillary-laughing-4').play();
+      //   }
+      // } else if (previous >= 50 && sampleData[stateName].avg < 50) {
+      //   if (stateName === "DC") {
+      //     document.getElementById('trump-china-DC').play();
+      //   } else if (rand < 0.33) {
+      //     document.getElementById('trump-china-1').play();
+      //   } else if (rand < 0.66){
+      //     document.getElementById('trump-china-2').play();
+      //   } else {
+      //     document.getElementById('trump-china-3').play();
+      //   }
+      // }
   	});
 
   updateForecast();
