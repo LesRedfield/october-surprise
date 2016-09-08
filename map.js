@@ -106,12 +106,10 @@ function renderSliders3(h) {
   if (h > 40) {
     rng = 100 - 40;
     displacement = 100 - h;
-    // debugger
   } else {
     rng = 40;
     displacement = h;
   }
-  // debugger
   let deltaDisp = displacement / rng * 10;
 
   sampleData.National = Math.round((h + deltaDisp) * 10) / 10;
@@ -174,7 +172,6 @@ slider.transition() // Gratuitous intro!
 
 
 function hue(h) {
-  // debugger
   handle.attr("cx", x(h));
 
   // svg.style("background-color", newHandleColor(h));
