@@ -84,15 +84,12 @@ function renderSliders2(h) {
   if (h > 60) {
     rng = 100 - 60;
     displacement = 100 - h;
-    // debugger
   } else {
     rng = 60;
     displacement = h;
   }
-  // debugger
   let deltaDisp = displacement / rng * 10;
 
-  // debugger
 
   sampleData.National = Math.round((h - deltaDisp) * 10) / 10;
   updateStates();
