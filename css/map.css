@@ -215,12 +215,12 @@ table {
 
 .hc {
   background-color: #0083D6;
-  border-radius: 10px 0 0 10px;
+  border-radius: 0 10px 10px 0;
 }
 
 .dt {
   background-color: #FF4D38;
-  border-radius: 0 10px 10px 0;
+  border-radius: 10px 0 0 10px;
   /*margin-right: 200px;*/
 }
 
@@ -278,7 +278,7 @@ table {
 
 #left-box {
   text-align: right;
-  color: #0083D6;
+  color: #FF4D38;
 }
 
 #hillgif {
@@ -294,7 +294,7 @@ table {
 
 #right-box {
   text-align: left;
-  color: #FF4D38;
+  color: #0083D6;
 }
 
 .bot-nav {

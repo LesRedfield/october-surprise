@@ -171,18 +171,11 @@
 
       function renderSliders1(h) {
 
-        // let previous = data[stateName].avg;
-        // debugger
         data[stateName].avg = Math.round(h * 10) / 10;
         data[stateName].color = newStateColor(stateName);
 
         updateStateColor("." + stateName, data[stateName].color);
         updateForecast();
-
-
-        // if (previous < 50 && h >= 50) {
-        //   document.getElementById('hillary-laughing-1').play();
-        // }
 
         hue(h);
         hue2(h + (50 - Math.abs(h - 50)) / 5);
@@ -196,15 +189,12 @@
         if (h > 60) {
           rng = 100 - 60;
           displacement = 100 - h;
-          // debugger
         } else {
           rng = 60;
           displacement = h;
         }
-        // debugger
+        
         let deltaDisp = displacement / rng * 10;
-
-        // debugger
 
         data[stateName].avg = Math.round((h - deltaDisp) * 10) / 10;
         data[stateName].color = newStateColor(stateName);
@@ -224,12 +214,11 @@
         if (h > 40) {
           rng = 100 - 40;
           displacement = 100 - h;
-          // debugger
         } else {
           rng = 40;
           displacement = h;
         }
-        // debugger
+        
         let deltaDisp = displacement / rng * 10;
 
         data[stateName].avg = Math.round((h + deltaDisp) * 10) / 10;
@@ -246,7 +235,6 @@
 
       var svg = d3.select("#svgSS1"),
           margin = {right: 15, left: 15},
-          // width = +svg.attr("width") - margin.left - margin.right,
           width = 170,
           height = +svg.attr("height");
 
@@ -256,7 +244,6 @@
           .clamp(true);
 
       var slider = svg.append("g")
-          // .transition()
           .attr("class", "slider")
           .attr("transform", "translate(" + margin.left + "," + height * (3 / 5) + ")");
 
@@ -282,27 +269,19 @@
           .attr("text-anchor", "middle")
           .text(function(d) { return d + "%"; });
 
-      var handle = slider.insert("circle", ".track-overlay")
+      let handle = slider.insert("circle", ".track-overlay")
           .attr("class", "handle")
           .attr("r", 9);
 
       slider.transition() // Gratuitous intro!
           .duration(2500)
           .tween("hue", function() {
-            var i = d3.interpolate(20, sampleData[stateName].avg);
+            let i = d3.interpolate(20, sampleData[stateName].avg);
             return function(t) { renderSliders1(i(t)); };
           });
 
       function hue(h) {
-        // debugger
         handle.attr("cx", x(h));
-
-        // svg.text(function(d) {return stateName + ": " + data[stateName].avg;});
-
-        // svg.style("background-color", allColor(h));
-
-        // d3.select("#SS1div").selectAll("text").remove();
-        // d3.select("#SS1div").text(function(d) {return stateName + ": " + data[stateName].avg;});
 
         d3.select("#hc-SS-1").selectAll("text").remove();
         d3.select("#hc-SS-1").text(function(d) {return Math.round(10 * h) / 10;});
@@ -353,19 +332,8 @@
           .attr("class", "handle")
           .attr("r", 9);
 
-      // slider2.transition() // Gratuitous intro!
-      //     .duration(750)
-      //     .tween("hue2", function() {
-      //       var i = d3.interpolate(0, 50);
-      //       return function(t) { renderSliders2(i(t)); };
-      //     });
-
       function hue2(h) {
         handle2.attr("cx", xb(h));
-        // svg2.style("background-color", allColor(h));
-
-        // d3.select("#SS2div").selectAll("text").remove();
-        // d3.select("#SS2div").text(function(d) {return stateName + " Women: " + Math.round(h * 10) / 10;});
 
         d3.select("#hc-SS-2").selectAll("text").remove();
         d3.select("#hc-SS-2").text(function(d) {return Math.round(10 * h) / 10;});
@@ -414,19 +382,8 @@
           .attr("class", "handle")
           .attr("r", 9);
 
-      // slider3.transition() // Gratuitous intro!
-      //     .duration(750)
-      //     .tween("hue3", function() {
-      //       var i = d3.interpolate(0, 50);
-      //       return function(t) { renderSliders3(i(t)); };
-      //     });
-
       function hue3(h) {
         handle3.attr("cx", xc(h));
-        // svg3.style("background-color", allColor(h));
-
-        // d3.select("#SS3div").selectAll("text").remove();
-        // d3.select("#SS3div").text(function(d) {return stateName + " Men: " + Math.round(h * 10) / 10;});
 
         d3.select("#hc-SS-3").selectAll("text").remove();
         d3.select("#hc-SS-3").text(function(d) {return Math.round(10 * h) / 10;});
@@ -438,11 +395,6 @@
         d3.select("#dt-SS-3").text(function(d) {return Math.round(10 * (100 - h)) / 10;});
       }
     }
-
-    // d3.select(id)
-    // .attr("preserveAspectRatio", "xMinYMin meet")
-    // .attr("viewBox", "0 0 600 400")
-
 
 		d3.select(id).selectAll(".state")
 			.data(uStatePaths).enter().append("path")
@@ -489,65 +441,9 @@ function newStateColor(state) {
   }
 }
 
-// function newHandleColor(h) {
-//   if (h > 50) {
-//     return "lightblue";
-//   } else {
-//     return "salmon";
-//   }
-// }
-
 function updateStateColor(state, color) {
-
-
-  // if (color === "blue" || color === "lightblue") {
-  //   d3.select("#statesvg").select("#hill-pic-1").remove();
-  //   // debugger
-  //   d3.select("#statesvg").append("defs")
-  //     .append("pattern")
-  //       .attr("id", "hill-pic-1")
-  //       .attr('patternUnits', 'userSpaceOnUse')
-  //       .attr("width", 1000)
-  //       .attr("height", 1000)
-  //     .append("image")
-  //       // .attr("xlink:href", "assets/images/hillary-rodham-clinton-983ef53096a65c47.jpg")
-  //       .attr("xlink:href", "assets/images/hillary-1.gif")
-  //       .attr("x", 0)
-  //       .attr("y", -300)
-  //       .attr("width", 1000)
-  //       .attr("height", 1000);
-  //
-  //   d3.select("#statesvg").select(state)
-  //     .style("fill", "url(#hill-pic-1)");
-      // .style("fill", "red");
-
-  // } else if (color === "red" || color === "salmon") {
-  //   d3.select("#statesvg").select("#trump-pic-1").remove();
-  //
-  //
-  //   d3.select("#statesvg").append("defs")
-  //     .append("pattern")
-  //       .attr("id", "trump-pic-1")
-  //       .attr('patternUnits', 'userSpaceOnUse')
-  //       .attr("width", 1200)
-  //       .attr("height", 1200)
-  //     .append("image")
-  //       // .attr("xlink:href", "assets/images/hillary-rodham-clinton-983ef53096a65c47.jpg")
-  //       .attr("xlink:href", "assets/images/trump-1.gif")
-  //       .attr("x", -50)
-  //       .attr("y", -300)
-  //       .attr("width", 1200)
-  //       .attr("height", 1200);
-  //
-  //   d3.select("#statesvg").select(state)
-  //     .style("fill", "url(#trump-pic-1)");
-
-  // } else {
   d3.select("#statesvg").select(state)
-    // .style("fill", function(state){ return sampleData[state].color; });
     .style("fill", color);
-      //  .style("fill", "url(#hill-pic-1)");
-  // }
 }
 
 function tooltipHtml(n, d){
@@ -604,8 +500,9 @@ function forecast() {
   });
 
   return [
-    {"name": "Clinton", "votes": hc, "x": 25, "color": "#0083D6"},
-    {"name": "Trump", "votes": dt, "x": 500, "color": "#FF4D38"}
+    {"name": "Trump", "votes": dt, "x": 25, "color": "#FF4D38"},
+    {"name": "Clinton", "votes": hc, "x": 500, "color": "#0083D6"}
+    
   ];
 }
 
@@ -632,8 +529,6 @@ var textLabels = text
 
 function updateForecast() {
 
-  // let previous = parseInt(forecastContainer.selectAll("text").text());
-
   forecastContainer.selectAll("text").remove();
 
   let hc = 0;
@@ -644,7 +539,6 @@ function updateForecast() {
   "MI", "WY", "MT", "ID", "WA", "TX", "CA", "AZ", "NV", "UT", "DC",
   "CO", "NM", "OR", "ND", "SD", "NE", "IA", "MS", "IN", "IL", "MN",
   "WI", "MO", "AR", "OK", "KS", "LA", "VA"].forEach(function(state) {
-    // debugger
     if (sampleData[state].avg > 50) {
       hc += data[state].votes;
     } else {
@@ -653,26 +547,21 @@ function updateForecast() {
   });
 
   let forecast = [
-    {"name": "Clinton", "votes": hc, "x": 100, "color": "#0083D6"},
-    {"name": "Trump", "votes": dt, "x": 380, "color": "#FF4D38"}
+    {"name": "Trump", "votes": dt, "x": 100, "color": "#FF4D38"},
+    {"name": "Clinton", "votes": hc, "x": 380, "color": "#0083D6"}
+    
   ];
 
-  // if (previous < 270 && hc >= 270) {
-  //   document.getElementById('hillary-laughing-1').play();
-  // }
-
-  var text = forecastContainer.selectAll("text")
+  let text = forecastContainer.selectAll("text")
                              .data(forecast)
                              .enter()
                              .append("text");
 
-  var textLabels = text
+  let textLabels = text
                   .attr("x", function(d) { return d.x; })
                   .attr("y", 75)
-                  // .text( function (d) { return d.name + ": " + d.votes; })
                   .text( function (d) { return d.votes; })
                   .attr("font-size", "75px")
                   .attr("font-weight", "bold")
                   .attr("fill", function(d) { return d.color; });
-
 }
