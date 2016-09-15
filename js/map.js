@@ -12,12 +12,12 @@ function updateStates(previous) {
       let previous = sampleData[stateName].avg;
       let rand = Math.random();
 
-      if (nat >= 53.7) {
-        shiftRate = (nat - 53.7) / 46.3;
+      if (nat >= 51.2) {
+        shiftRate = (nat - 51.2) / 48.8;
         sampleData[stateName].avg = orig + (100 - orig) * shiftRate;
       } else {
-        shiftRate = (53.7 - nat) / 53.7;
-        sampleData[stateName].avg = orig - 53.7 * shiftRate;
+        shiftRate = (51.2 - nat) / 51.2;
+        sampleData[stateName].avg = orig - 51.2 * shiftRate;
       }
 
 
@@ -166,7 +166,7 @@ var handle = slider.insert("circle", ".track-overlay")
 slider.transition() // Gratuitous intro!
 .duration(5000)
 .tween("hue", function() {
-  var i = d3.interpolate(34, 53.7);
+  var i = d3.interpolate(34, 51.2);
   return function(t) { renderSliders1(i(t)); };
 });
 
