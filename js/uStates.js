@@ -193,7 +193,7 @@
           rng = 60;
           displacement = h;
         }
-        
+
         let deltaDisp = displacement / rng * 10;
 
         data[stateName].avg = Math.round((h - deltaDisp) * 10) / 10;
@@ -218,7 +218,7 @@
           rng = 40;
           displacement = h;
         }
-        
+
         let deltaDisp = displacement / rng * 10;
 
         data[stateName].avg = Math.round((h + deltaDisp) * 10) / 10;
@@ -502,7 +502,7 @@ function forecast() {
   return [
     {"name": "Trump", "votes": dt, "x": 25, "color": "#FF4D38"},
     {"name": "Clinton", "votes": hc, "x": 500, "color": "#0083D6"}
-    
+
   ];
 }
 
@@ -549,7 +549,7 @@ function updateForecast() {
   let forecast = [
     {"name": "Trump", "votes": dt, "x": 100, "color": "#FF4D38"},
     {"name": "Clinton", "votes": hc, "x": 380, "color": "#0083D6"}
-    
+
   ];
 
   let text = forecastContainer.selectAll("text")
