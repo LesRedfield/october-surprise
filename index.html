@@ -3,44 +3,22 @@
     <title>October Surprise</title>
     <link rel="icon" type="image/vnd.microsoft.icon" href="os-favicon.ico" />
     <link rel="stylesheet" type="text/css" href="css/map.css">
-    <!-- <script src="http://d3js.org/topojson.v1.min.js"></script> -->
     <script src="https://d3js.org/d3.v4.min.js"  charset="utf-8"></script>
-
     <script type="application/javascript" src="js/data.js"></script>
-    <!-- Jquery -->
-    <!-- <script src="./lib/jquery-1.10.2.js"></script> -->
     <script src="//fast.eager.io/3fEa1U0h60.js"></script>
-
   </head>
 
   <body>
 
-    <audio id="hillary-laughing-1" src="assets/audio/hillary_laughing_1.mp3"></audio>
-    <audio id="hillary-laughing-2" src="assets/audio/hillary_laughing_2.mp3"></audio>
-    <audio id="hillary-laughing-3" src="assets/audio/hillary_laughing_3.mp3"></audio>
-    <audio id="hillary-laughing-4" src="assets/audio/hillary_laughing_4.mp3"></audio>
-    <audio id="trump-china-1" src="assets/audio/trump_china_1.mp3"></audio>
-    <audio id="trump-china-2" src="assets/audio/trump_china_2.mp3"></audio>
-    <audio id="trump-china-3" src="assets/audio/trump_china_3.mp3"></audio>
-    <audio id="trump-china-DC" src="assets/audio/trump_china_DC.mp3"></audio>
-
     <div id="forecast" class="group">
       <div id="left-box">Trump</div>
-      <svg id="fc-box">
-        <!-- <div id="hillgif"></div>
-        <div id="trumpgif"></div> -->
-      </svg>
-      <!-- <svg id="fc-box"></svg> -->
+      <svg id="fc-box"></svg>
       <div id="right-box">Clinton</div>
     </div>
 
-
-
     <div>
       <div id="feature" class="group">
-
         <div id="nationalSliders">
-
           <div id="nat-label">National</div>
 
           <div class="slider-container">
@@ -72,19 +50,13 @@
               <div id="hc-3" class="hc"></div>
             </div>
           </div>
-
         </div>
-
-
-        <!-- <div id="tooltip"></div> -->
-
 
         <div id="svg-container">
           <svg viewBox="0 0 960 640" preserveAspectRatio="xMinYMin meet" id="statesvg" class="svg-content"></svg>
         </div>
 
         <div id="stateSliders">
-
           <div id="state-label"></div>
 
           <div class="slider-container">
@@ -115,7 +87,6 @@
               </svg>
               <div id="hc-SS-3" class="hc"></div>
             </div>
-
           </div>
 
         </div>
@@ -131,12 +102,8 @@
 
     </div>
 
-
-    <!-- <div id="map" style="position: relative; width: 500px; height: 300px;"></div> -->
-
     <script type="application/javascript" src="js/map.js"></script>
     <script type="application/javascript" src="js/uStates.js"></script>
-
 
   </body>
 </html>

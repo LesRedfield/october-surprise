@@ -29,56 +29,14 @@ table {
 }
 
 .state{
-	/*fill: url(#hill-pic-1);*/
-	/*stroke: #a9a9a9;*/
   stroke: #CEDCD3;
 	stroke-width: 1;
 }
 
 .state:hover{
 	fill-opacity: 0.5;
-  /*fill: url(#hill-pic-1);*/
   stroke: #CEDCD3;
   stroke-width: 4;
-}
-
-#tooltip {
-	position: absolute;
-	text-align: center;
-	padding: 20px;
-	margin: 10px;
-	font: 12px sans-serif;
-	background: lightsteelblue;
-	border: 1px;
-	border-radius: 2px;
-	pointer-events: none;
-}
-#tooltip h4{
-	margin: 0;
-	font-size: 14px;
-}
-#tooltip{
-	background: rgba(0,0,0,0.9);
-	border: 1px solid grey;
-	border-radius: 5px;
-	font-size: 12px;
-	width: auto;
-	padding: 4px;
-	color: white;
-	opacity: 0;
-}
-#tooltip table{
-	table-layout: fixed;
-}
-#tooltip tr td{
-	padding: 0;
-	margin: 0;
-}
-#tooltip tr td:nth-child(1){
-	width: 50px;
-}
-#tooltip tr td:nth-child(2){
-	text-align: center;
 }
 
 .ticks {
@@ -110,7 +68,6 @@ table {
 }
 
 .handle {
-  /*fill: #fff;*/
   fill: #FF4D38;
   stroke: #000;
   stroke-opacity: 0.5;
@@ -122,7 +79,6 @@ table {
 }
 
 #stateSliders, #nationalSliders {
-  /*height: 100%;*/
   padding-top: 25px;
 }
 
@@ -144,33 +100,21 @@ table {
 }
 
 #forecast {
-  /*height: 200px;*/
-  /*background: linear-gradient(135deg, red, blue);*/
   padding-top: 20px;
 }
 
 #feature {
-  /*background-image: url("assets/images/hillary-rodham-clinton-983ef53096a65c47.jpg");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;*/
   background-color: #CEDCD3;
-  /*padding-top: 20px;*/
   padding-bottom: 50px;
   padding-left: 10px;
   padding-right: 10px;
   margin-left: 10px;
   margin-right: 10px;
-  /*margin-bottom: 10px;*/
-
 }
 
 .state-slide {
   float: left;
   overflow: hidden;
-  /*position: absolute;
-  right: 40px;
-  left: 40px;*/
 }
 
 #nat-label, #state-label {
@@ -180,14 +124,6 @@ table {
   text-align: center;
   font-weight: bold;
   padding-bottom: 10px;
-}
-
-#nat-label {
-  /*color: #0083D6;*/
-}
-
-#state-label {
-  /*color: #FF4D38;*/
 }
 
 .nat-slide, .state-slide {
@@ -203,7 +139,6 @@ table {
   height: 60px;
   color: white;
   line-height: 60px;
-  /*overflow: hidden;*/
 }
 
 .hc, .dt, .middle {
@@ -219,14 +154,7 @@ table {
 .dt {
   background-color: #FF4D38;
   border-radius: 10px 0 0 10px;
-  /*margin-right: 200px;*/
 }
-
-/*#dt-SS-1 {
-  position: absolute;
-  right: 0;
-
-}*/
 
 .middle {
   position: absolute;
@@ -256,10 +184,6 @@ table {
   margin-top: 25px;
   background-color: #CEDCD3;
   border-radius: 10px 10px 0 0;
-  /*display: flex;*/
-}
-
-.top-bar {
 }
 
 #fc-box {
@@ -279,17 +203,6 @@ table {
   color: #FF4D38;
 }
 
-#hillgif {
-  background-image: url ("assets/images/hillary-1.gif");
-  width: 100px;
-  height: 100px;
-  float: left;
-}
-
-#trumpgif {
-
-}
-
 #right-box {
   text-align: left;
   color: #0083D6;
@@ -304,9 +217,6 @@ table {
   margin-right: 10px;
   margin-bottom: 15px;
   padding-bottom: 15px;
-}
-
-#portfolio, #github, #linkedin, #copyright {
 }
 
 #portfolio, #github, #linkedin {

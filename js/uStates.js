@@ -63,65 +63,28 @@
 			d3.select("#tooltip").transition().duration(200).style("opacity", 0.9);
 
 			d3.select("#tooltip").html(toolTip("Donald", "WINNING"))
-				// .style("left", (d3.event.pageX + 50) + "px")
-				// .style("top", (d3.event.pageY + 50) + "px");
         .style("right", 1100 + "px")
         .style("top", 125 + "px");
 		}
 
     function mouseOver(d) {
-      // let state = "." + d.id;
-      //
-      // d3.select("#statesvg").select(state).transition().style("fill", "url(#hill-pic-1)");
-
 			d3.select("#tooltip").transition().duration(200).style("opacity", 0.9);
 
 			d3.select("#tooltip").html(toolTip(d.n, data[d.id]))
-				// .style("left", (d3.event.pageX + 50) + "px")
-				// .style("top", (d3.event.pageY + 50) + "px");
         .style("right", 200 + "px")
         .style("top", 150 + "px");
 		}
 
 		function mouseOut() {
-      // d3.select("#statesvg").selectAll(".state")
-      //   .style("fill", "url(#hill-pic-1)");
-
 			d3.select("#tooltip").transition().duration(500).style("opacity", 0);
 		}
 
     function clicked(d) {
-      // d3.select("#tooltip").transition().duration(500).style("opacity", 0);
-
-      // let x1 = 0;
-      // let y1 = 0;
-      //
-      // if (d3.event.offsetX > 75) {
-      //   x1 = d3.event.offsetX - 75;
-      // }
-      //
-      // let x2 = x1 + 150;
-      //
-      // if (d3.event.offsetY > 75) {
-      //   y1 = d3.event.offsetY - 75;
-      // }
-      //
-      // let y2 = y1 + 150;
-      //
-      // let vb = "" + x1 + " " + y1 + " " + x2 + " " + y2;
-      //
-      // d3.select("#statesvg")
-      //   .attr("viewBox", vb);
-
       d3.select("#svgSS1").selectAll("*").remove();
       d3.select("#svgSS2").selectAll("*").remove();
       d3.select("#svgSS3").selectAll("*").remove();
 
       let stateName = d.id;
-
-      // d3.select("#SS1div").text(function(d) {return stateName + ": " + data[stateName].avg;});
-      // d3.select("#SS2div").text(function(d) {return stateName + " Women: " + data[stateName].avg;});
-      // d3.select("#SS3div").text(function(d) {return stateName + " Men: " + data[stateName].avg;});
 
       d3.select("#svgSS1").transition().attr("width", "200px");
       d3.select("#svgSS2").transition().attr("width", "200px");
@@ -129,48 +92,19 @@
 
       d3.select("#state-label").transition().text( function(d) { return stateName; } );
 
-      // d3.select("#ss").transition().attr("width", "280px");
-      // d3.select("#ss").transition().attr("width", "280px");
-      // d3.select("#ss").transition().attr("width", "280px");
-
-
-
       d3.select("#hc-SS-1").selectAll("text").remove();
       d3.select("#hc-SS-1").text(function(d) {return Math.round(10 * data[stateName].avg) / 10;});
 
       d3.select("#middle-SS-1").selectAll("text").remove();
-      // d3.select("#middle-SS-1").text(function(d) {return "OVERALL";});
 
       d3.select("#dt-SS-1").selectAll("text").remove();
       d3.select("#dt-SS-1").text(function(d) {return Math.round(10 * (100 - data[stateName].avg)) / 10;});
-
-
-      // d3.select("#hc-SS-2").selectAll("text").remove();
-      // d3.select("#hc-SS-2").text(function(d) {return Math.round(10 * data[stateName].avg) / 10;});
-      //
-      // d3.select("#middle-SS-2").selectAll("text").remove();
-      // d3.select("#middle-SS-2").text(function(d) {return "WOMEN";});
-      //
-      // d3.select("#dt-SS-2").selectAll("text").remove();
-      // d3.select("#dt-SS-2").text(function(d) {return Math.round(10 * (100 - data[stateName].avg)) / 10;});
-      //
-      //
-      // d3.select("#hc-SS-3").selectAll("text").remove();
-      // d3.select("#hc-SS-3").text(function(d) {return Math.round(10 * data[stateName].avg) / 10;});
-      //
-      // d3.select("#middle-SS-3").selectAll("text").remove();
-      // d3.select("#middle-SS-3").text(function(d) {return "MEN";});
-      //
-      // d3.select("#dt-SS-3").selectAll("text").remove();
-      // d3.select("#dt-SS-3").text(function(d) {return Math.round(10 * (100 - data[stateName].avg)) / 10;});
-
 
       function allColor(h) {
         return d3.hsl(h, 0.8, 0.8);
       }
 
       function renderSliders1(h) {
-
         data[stateName].avg = Math.round(h * 10) / 10;
         data[stateName].color = newStateColor(stateName);
 
@@ -293,8 +227,6 @@
         d3.select("#dt-SS-1").text(function(d) {return Math.round(10 * (100 - h)) / 10;});
       }
 
-
-
       var svg2 = d3.select("#svgSS2");
 
       var xb = d3.scaleLinear()
@@ -413,7 +345,6 @@
 })();
 
 function render() {
-  // transitionRender();
   uStates.draw("#statesvg", sampleData, tooltipHtml);
 }
 
@@ -449,19 +380,17 @@ function updateStateColor(state, color) {
 function tooltipHtml(n, d){
   if (n === "Donald") {
     return "<h4>CHINA!</h4>";
-
   } else {
-
-  return "<h4>"+n+"</h4><table>"+
-		"<tr><td>Men</td><td>"+(d.men)+"</td></tr>"+
-		"<tr><td>Average</td><td>"+(d.avg)+"</td></tr>"+
-		"<tr><td>Women</td><td>"+(d.women)+"</td></tr>"+
-		"</table>";
-
+  	return "<h4>"+n+"</h4><table>"+
+			"<tr><td>Men</td><td>"+(d.men)+"</td></tr>"+
+			"<tr><td>Average</td><td>"+(d.avg)+"</td></tr>"+
+			"<tr><td>Women</td><td>"+(d.women)+"</td></tr>"+
+			"</table>";
   }
 }
 
 var sampleData = {};
+
 ["HI", "AK", "FL", "SC", "GA", "AL", "NC", "TN", "RI", "CT", "MA",
 "ME", "NH", "VT", "NY", "NJ", "PA", "DE", "MD", "WV", "KY", "OH",
 "MI", "WY", "MT", "ID", "WA", "TX", "CA", "AZ", "NV", "UT", "DC",
@@ -502,10 +431,8 @@ function forecast() {
   return [
     {"name": "Trump", "votes": dt, "x": 25, "color": "#FF4D38"},
     {"name": "Clinton", "votes": hc, "x": 500, "color": "#0083D6"}
-
   ];
 }
-
 
 var forecast = forecast();
 
@@ -549,7 +476,6 @@ function updateForecast() {
   let forecast = [
     {"name": "Trump", "votes": dt, "x": 100, "color": "#FF4D38"},
     {"name": "Clinton", "votes": hc, "x": 380, "color": "#0083D6"}
-
   ];
 
   let text = forecastContainer.selectAll("text")

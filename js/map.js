@@ -20,55 +20,19 @@ function updateStates(previous) {
         sampleData[stateName].avg = orig - 51.2 * shiftRate;
       }
 
-
       sampleData[stateName].color = newStateColor(stateName);
 
       updateStateColor("." + stateName, sampleData[stateName].color);
-
-      // if (previous < 50 && sampleData[stateName].avg >= 50) {
-      //   if (rand < 0.25) {
-      //     document.getElementById('hillary-laughing-1').play();
-      //   } else if (rand < 0.50) {
-      //     document.getElementById('hillary-laughing-2').play();
-      //   } else if (rand < 0.75) {
-      //     document.getElementById('hillary-laughing-3').play();
-      //   } else {
-      //     document.getElementById('hillary-laughing-4').play();
-      //   }
-      // } else if (previous >= 50 && sampleData[stateName].avg < 50) {
-      //   if (stateName === "DC") {
-      //     document.getElementById('trump-china-DC').play();
-      //   } else if (rand < 0.33) {
-      //     document.getElementById('trump-china-1').play();
-      //   } else if (rand < 0.66){
-      //     document.getElementById('trump-china-2').play();
-      //   } else {
-      //     document.getElementById('trump-china-3').play();
-      //   }
-      // }
   	});
 
   updateForecast();
 }
-
-// function newHandleColor(h) {
-//   if (h > 54) {
-//     return "blue";
-//   } else if (h > 50) {
-//     return "lightblue";
-//   } else if (h > 46) {
-//     return "salmon";
-//   } else {
-//     return "red";
-//   }
-// }
 
 function allColor(h) {
   return d3.hsl(h, 0.8, 0.8);
 }
 
 function renderSliders1(h) {
-
   sampleData.National = Math.round(h * 10) / 10;
   updateStates();
 
@@ -90,7 +54,6 @@ function renderSliders2(h) {
   }
   let deltaDisp = displacement / rng * 10;
 
-
   sampleData.National = Math.round((h - deltaDisp) * 10) / 10;
   updateStates();
 
@@ -110,6 +73,7 @@ function renderSliders3(h) {
     rng = 40;
     displacement = h;
   }
+
   let deltaDisp = displacement / rng * 10;
 
   sampleData.National = Math.round((h + deltaDisp) * 10) / 10;
@@ -119,7 +83,6 @@ function renderSliders3(h) {
   hue2(h + (2 * deltaDisp));
   hue3(h);
 }
-
 
 var svg = d3.select("#svg1"),
     margin = {right: 15, left: 15},
@@ -170,11 +133,8 @@ slider.transition() // Gratuitous intro!
   return function(t) { renderSliders1(i(t)); };
 });
 
-
 function hue(h) {
   handle.attr("cx", x(h));
-
-  // svg.style("background-color", newHandleColor(h));
 
   d3.select("#hc-1").selectAll("text").remove();
   d3.select("#hc-1").text(function(d) {return Math.round(10 * sampleData.National) / 10;});
@@ -185,8 +145,6 @@ function hue(h) {
   d3.select("#dt-1").selectAll("text").remove();
   d3.select("#dt-1").text(function(d) {return Math.round(10 * (100 - sampleData.National)) / 10;});
 }
-
-
 
 var svg2 = d3.select("#svg2"),
     margin = {right: 15, left: 15},
@@ -228,16 +186,8 @@ var handle2 = slider2.insert("circle", ".track-overlay")
     .attr("class", "handle")
     .attr("r", 9);
 
-// slider2.transition() // Gratuitous intro!
-//     .duration(2500)
-//     .tween("hue2", function() {
-//       var i = d3.interpolate(0, 50);
-//       return function(t) { renderSliders2(i(t)); };
-//     });
-
 function hue2(h) {
   handle2.attr("cx", xb(h));
-  // svg2.style("background-color", newHandleColor(h));
 
   d3.select("#hc-2").selectAll("text").remove();
   d3.select("#hc-2").text(function(d) {return Math.round(10 * h) / 10;});
@@ -289,17 +239,8 @@ var handle3 = slider3.insert("circle", ".track-overlay")
     .attr("class", "handle")
     .attr("r", 9);
 
-// slider3.transition() // Gratuitous intro!
-//     .duration(750)
-//     .tween("hue3", function() {
-//       var i = d3.interpolate(0, 50);
-//       return function(t) { renderSliders3(i(t)); };
-//     });
-
 function hue3(h) {
   handle3.attr("cx", xc(h));
-
-  // svg3.style("background-color", newHandleColor(h));
 
   d3.select("#hc-3").selectAll("text").remove();
   d3.select("#hc-3").text(function(d) {return Math.round(10 * h) / 10;});
