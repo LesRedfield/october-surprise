@@ -49,7 +49,8 @@ let data = {
   "OK": {overall: 37.6, votes: 7},
   "KS": {overall: 44.3, votes: 6},
   "LA": {overall: 41.8, votes: 8},
-  "VA": {overall: 52.9, votes: 13}
+  "VA": {overall: 52.9, votes: 13},
+  "National": {overall: 51.2, votes: 538}
 };
 
 const STATES = [
