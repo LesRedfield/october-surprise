@@ -64,11 +64,11 @@ function updateStates() {
     let orig = data[stateName].overall;
     let shiftRate;
 
-    if (nat >= 51.2) {
-      shiftRate = (nat - 51.2) / 48.8;
+    if (nat >= 50.6) {
+      shiftRate = (nat - 50.6) / 48.8;
       sampleData[stateName].avg = orig + (100 - orig) * shiftRate;
     } else {
-      shiftRate = (51.2 - nat) / 51.2;
+      shiftRate = (50.6 - nat) / 50.6;
       sampleData[stateName].avg = orig - orig * shiftRate;
     }
 

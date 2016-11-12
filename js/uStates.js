@@ -43,7 +43,7 @@ STATES.forEach(function(d) {
 });
 
 sampleData["National"] = {
-  avg: 51.2
+  avg: 50.6
 };
 
 render();
@@ -60,6 +60,6 @@ renderSliders();
 d3.select("#slider-1").transition() // nat intro
     .duration(2500)
     .tween("intro", function() {
-      let i = d3.interpolate(34, 51.2);
+      let i = d3.interpolate(34, 50.6);
       return function(t) { updateSliders(i(t), 1, "National", "", false); };
     });
